@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SplashView: View {
     
-    @State var showLoginView: Bool = false
+    @State var showLoginView: Bool = true
     @State var password: String = ""
     @State var showHomeView: Bool
     
@@ -17,7 +17,7 @@ struct SplashView: View {
         NavigationView {
             CurveShape()
                 .fill(showLoginView ? .white : Color("lightBackgroundColor"))
-                .scaleEffect(CGSize(width: showLoginView ? 1.5 : 2.5, height: showLoginView ? 1 : 3.5))
+                .scaleEffect(CGSize(width: showLoginView ? 1.3 : 2.5, height: showLoginView ? 1 : 3.5))
                 .background(Color("backgroundColor"))
                 .shadow(color: Color("shadowColor"), radius: 30, x: 0, y: 0)
                 .overlay() {
@@ -150,6 +150,7 @@ struct LoginViewContent: View, ContentViewProtocol {
             .cornerRadius(8)
             .padding(.horizontal)
             .shadow(color: Color("textfieldColor"), radius: 5, x: 0, y: 0)
+            .padding(.bottom, 12)
             
             HStack(alignment: .top) {
                 Image(systemName: "lock.circle.fill")

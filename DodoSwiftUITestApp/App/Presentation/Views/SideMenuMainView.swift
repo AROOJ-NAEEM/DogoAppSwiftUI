@@ -41,12 +41,12 @@ struct SideMenuMainView: View {
                         
                         
                     }
+                    .padding(.top, 57)
                     .frame(width: 257)
                     .background(
                         Color.white
                     )
                 }
-                
                 
                 Spacer()
             }
