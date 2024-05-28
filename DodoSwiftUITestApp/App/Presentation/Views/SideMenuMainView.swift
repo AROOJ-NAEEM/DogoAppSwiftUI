@@ -1,0 +1,149 @@
+//
+//  SideMenuMainView.swift
+//  DogoSwiftUITestApp
+//
+//  Created by Dev on 28/05/2024.
+//
+
+import SwiftUI
+
+struct SideMenuMainView: View {
+    
+    @Binding var selectedSideMenuTab: Int
+    @Binding var presentSideMenu: Bool
+    
+    var body: some View {
+            HStack {
+                ZStack{
+                    Rectangle()
+                        .fill(.white)
+                        .frame(width: 257)
+                        .shadow(color: Color("menuShadowColor").opacity(1), radius: 200, x: 0, y: 3)
+                    
+                    VStack(alignment: .leading, spacing: 0) {
+                        DogoLogoView(text: "Dogo")
+                        ProfileImageView()
+                            .frame(height: 140)
+                            .padding(.bottom, 30)
+                        DividerView()
+                            .offset(y: -40)
+                        ForEach(SideMenuRowType.allCases, id: \.self){ row in
+                            RowView(isSelected: selectedSideMenuTab == row.rawValue, imageName: row.iconName, title: row.title, label: row.label) {
+                                selectedSideMenuTab = row.rawValue
+                                presentSideMenu.toggle()
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        DividerView()
+                        LogoutView()
+                        
+                        
+                    }
+                    .frame(width: 257)
+                    .background(
+                        Color.white
+                    )
+                }
+                
+                
+                Spacer()
+            }
+            .background(.clear)
+        }
+    
+    func DividerView()-> some View {
+        Divider()
+            .frame(height: 2)
+            .overlay(Color("dividerColor"))
+            .padding(.horizontal, 20)
+    }
+        
+        func ProfileImageView() -> some View{
+            HStack {
+                Image("profile")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 50, height: 50)
+                    .padding()
+                Spacer()
+                VStack {
+                    Text("Coleen H")
+                        .font(Font.custom("Montserrat-Regular", size: 14))
+                        .foregroundColor(Color("blackColor"))
+                    Button(action: {}, label: {
+                        Text("Edit profile")
+                            .font(Font.custom("Poppins-Medium", size: 14))
+                            .foregroundColor(Color("darkBlackColor"))
+                    })
+                }
+                .padding()
+            }
+            .frame(width: 209, height: 66)
+            .background(Color("profileColor").opacity(0.2))
+            .cornerRadius(8)
+            .padding(.horizontal, 24)
+        }
+        
+        func RowView(isSelected: Bool, imageName: String, title: String, label: String, hideDivider: Bool = false, action: @escaping (()->())) -> some View{
+            Button{
+                action()
+            } label: {
+                VStack(alignment: .leading){
+                    HStack(spacing: 10){
+                        ZStack{
+                            Image(imageName)
+                                .resizable()
+                                .renderingMode(.template)
+                                .foregroundColor(Color("menuIconColor"))
+                                .frame(width: 24, height: 24)
+                        }
+                        .frame(width: 24, height: 24)
+                        Text(title)
+                            .font(Font.custom("Poppins-Regular", size: 14))
+                            .foregroundColor(Color("blackColor"))
+                        if label != "" {
+                            Text(label)
+                                .font(Font.custom("Poppins-Regular", size: 14))
+                                .foregroundColor(Color("blackColor"))
+                                .frame(width: 23, height: 23)
+                                .background(Color("yellowColor"))
+                                .cornerRadius(50)
+                        }
+                        Spacer()
+                    }
+                }
+            }
+            .frame(height: 50)
+            .padding(.horizontal, 24)
+        }
+    
+    func LogoutView() -> some View{
+        HStack {
+            Image("logout")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 24, height: 24)
+                .padding(.leading)
+            Text("Log out")
+                .font(Font.custom("Poppins-Regular", size: 16))
+                .foregroundColor(Color("blackColor"))
+        }
+        .padding(24)
+    }
+    
+    struct DogoLogoView: View {
+        var text: String
+        var body: some View {
+            Text(text)
+                .font(Font.custom("Lobster-Regular", size: 49.66))
+                .foregroundColor(Color("profileColor"))
+                .padding(.horizontal, 24)
+        }
+    }
+}
+
+#Preview {
+    SideMenuMainView(selectedSideMenuTab: .constant(0), presentSideMenu: .constant(true))
+}
