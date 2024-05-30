@@ -56,6 +56,7 @@
 		D70563F62C05DA9800955B77 /* SideMenuMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563F52C05DA9800955B77 /* SideMenuMainView.swift */; };
 		D70563F82C05DADB00955B77 /* MainTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563F72C05DADB00955B77 /* MainTabbedView.swift */; };
 		D70563FA2C05EF8900955B77 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563F92C05EF8800955B77 /* BookingView.swift */; };
+		D70564052C08A29700955B77 /* BookingScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70564042C08A29600955B77 /* BookingScheduleView.swift */; };
 		D7BA8F2B2BFF962000724F3B /* DodoSwiftUITestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA8F2A2BFF962000724F3B /* DodoSwiftUITestAppApp.swift */; };
 		D7BA8F2D2BFF962000724F3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA8F2C2BFF962000724F3B /* ContentView.swift */; };
 		D7BA8F2F2BFF962300724F3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BA8F2E2BFF962300724F3B /* Assets.xcassets */; };
@@ -113,6 +114,7 @@
 		D70563F52C05DA9800955B77 /* SideMenuMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMainView.swift; sourceTree = "<group>"; };
 		D70563F72C05DADB00955B77 /* MainTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbedView.swift; sourceTree = "<group>"; };
 		D70563F92C05EF8800955B77 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
+		D70564042C08A29600955B77 /* BookingScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingScheduleView.swift; sourceTree = "<group>"; };
 		D7BA8F272BFF962000724F3B /* DogoSwiftUITestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogoSwiftUITestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7BA8F2A2BFF962000724F3B /* DodoSwiftUITestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DodoSwiftUITestAppApp.swift; sourceTree = "<group>"; };
 		D7BA8F2C2BFF962000724F3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				D70563F52C05DA9800955B77 /* SideMenuMainView.swift */,
 				D70563E02C04E18E00955B77 /* SideMenu.swift */,
 				D70563F72C05DADB00955B77 /* MainTabbedView.swift */,
+				D70564042C08A29600955B77 /* BookingScheduleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D70563E32C04E1BE00955B77 /* SideMenuRowType.swift in Sources */,
+				D70564052C08A29700955B77 /* BookingScheduleView.swift in Sources */,
 				D7BA8F2D2BFF962000724F3B /* ContentView.swift in Sources */,
 				D70563F62C05DA9800955B77 /* SideMenuMainView.swift in Sources */,
 				D70563FA2C05EF8900955B77 /* BookingView.swift in Sources */,

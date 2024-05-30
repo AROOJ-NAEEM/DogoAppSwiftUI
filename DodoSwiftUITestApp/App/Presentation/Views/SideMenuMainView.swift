@@ -25,7 +25,7 @@ struct SideMenuMainView: View {
                         ProfileImageView()
                             .frame(height: 140)
                             .padding(.bottom, 30)
-                        DividerView()
+                        DividerView(padding: 20)
                             .offset(y: -40)
                         ForEach(SideMenuRowType.allCases, id: \.self){ row in
                             RowView(isSelected: selectedSideMenuTab == row.rawValue, imageName: row.iconName, title: row.title, label: row.label) {
@@ -36,7 +36,7 @@ struct SideMenuMainView: View {
                         
                         Spacer()
                         
-                        DividerView()
+                        DividerView(padding: 20)
                         LogoutView()
                         
                         
@@ -52,13 +52,6 @@ struct SideMenuMainView: View {
             }
             .background(.clear)
         }
-    
-    func DividerView()-> some View {
-        Divider()
-            .frame(height: 2)
-            .overlay(Color("dividerColor"))
-            .padding(.horizontal, 20)
-    }
         
         func ProfileImageView() -> some View{
             HStack {
@@ -141,6 +134,16 @@ struct SideMenuMainView: View {
                 .foregroundColor(Color("profileColor"))
                 .padding(.horizontal, 24)
         }
+    }
+}
+
+struct DividerView: View {
+    @State var padding: CGFloat
+    var body: some View {
+        Divider()
+            .frame(height: 2)
+            .overlay(Color("dividerColor"))
+            .padding(.horizontal, padding)
     }
 }
 
