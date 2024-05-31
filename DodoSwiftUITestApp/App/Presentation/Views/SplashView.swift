@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SplashView: View {
     
-    @State var showLoginView: Bool = true
+    @State var showLoginView: Bool = false
     @State var password: String = ""
     @State var showHomeView: Bool
     

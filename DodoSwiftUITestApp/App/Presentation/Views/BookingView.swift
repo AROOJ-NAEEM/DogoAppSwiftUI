@@ -11,13 +11,21 @@ struct BookingView: View {
     @Binding var presentSideMenu: Bool
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                bookingHeaderView(presentSideMenu: $presentSideMenu)
+        ZStack {
+            NavigationView {
+                ZStack {
+                    LinearGradient(
+                        gradient: Gradient(colors: [.white, .white, .white, .white, .white, Color("menuIconColor")]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    .edgesIgnoringSafeArea(.all)
+                    bookingHeaderView(presentSideMenu: $presentSideMenu)
+                        .padding(.horizontal, 24)
+                }
             }
-            .padding(.horizontal, 24)
+            .edgesIgnoringSafeArea(.all)
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -39,37 +47,53 @@ struct bookingHeaderView: View {
     var body: some View {
         VStack(spacing: 18){
             NavigationHeader(viewName: MainTabbedView())
-            VStack {
-                HStack {
-                    textView(text: "May", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
-                    Spacer()
-                }
-                BookingsInMonth(items: 2)
-            }
-            VStack {
-                HStack {
-                    textView(text: "April", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
-                    Spacer()
-                }
-                BookingsInMonth(items: 3)
-            }
-            VStack {
-                HStack {
-                    textView(text: "March", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
-                    Spacer()
-                }
-                BookingsInMonth(items: 3)
-                    .overlay {
-                        BookingButton()
+            ScrollView (.vertical, showsIndicators: false) {
+                VStack {
+                    HStack {
+                        textView(text: "May", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
+                        Spacer()
                     }
+                    BookingsInMonth(items: 2)
+                }
+                VStack {
+                    HStack {
+                        textView(text: "April", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
+                        Spacer()
+                    }
+                    BookingsInMonth(items: 3)
+                }
+                VStack {
+                    HStack {
+                        textView(text: "March", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
+                        Spacer()
+                    }
+                    BookingsInMonth(items: 3)
+                }
+                //            .padding(.top, -70)
+                Spacer()
             }
-//            .padding(.top, -70)
-            Spacer()
+            .overlay {
+                BookingButton()
+                    .offset(y: 270)
+            }
         }
     }
 }
 
 struct BookingButton: View {
+    var body: some View {
+        BookingNavigation(text: "Booking", width: 350, font: "Poppins-Regular", fontSize: 24, height: 50)
+        .offset(y: 45)
+    }
+}
+
+struct BookingNavigation: View {
+    @State var text: String
+    @State var width: CGFloat
+    @State var font: String
+    @State var fontSize: CGFloat
+    @State var height: CGFloat
+    
     var body: some View {
         NavigationLink() {
             BookingScheduleView()
@@ -77,12 +101,11 @@ struct BookingButton: View {
                 .navigationBarHidden(true)
             
         } label: {
-            textView(text: "Booking", font: "Poppins-Regular", fontSize: 24, color: "white")
-                .frame(width: 358, height: 55)
+            textView(text: text, font: font, fontSize: fontSize, color: "white")
+                .frame(width: width, height: height)
                 .background(Color("buttonColor"))
                 .cornerRadius(8)
         }
-        .offset(y: 50)
     }
 }
 
@@ -134,13 +157,11 @@ struct Bookings: View {
                 .fill(.clear)
                 .frame(width: .infinity, height: 102)
                 .cornerRadius(8)
-//                .shadow(color: Color("greyIconCOlor"), radius: 5, x: 0, y: 0)
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(Color("textfieldColor1"), lineWidth: 0.5)
-//                        .shadow(color: Color("greyIconCOlor"), radius: 5, x: 0, y: 0)
+                    .shadow(radius: 5)
                 )
-//                .shadow(color: Color("greyIconCOlor"), radius: 5, x: 0, y: 0)
                 .overlay {
                     HStack {
                         VStack (spacing: 5) {

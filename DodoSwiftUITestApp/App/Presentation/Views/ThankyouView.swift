@@ -1,0 +1,32 @@
+//
+//  ThankyouView.swift
+//  DogoSwiftUITestApp
+//
+//  Created by Dev on 31/05/2024.
+//
+
+import SwiftUI
+
+struct ThankyouView: View {
+    var body: some View {
+        VStack(spacing: 24) {
+            NavigationHeader(viewName: BookingView(presentSideMenu: .constant(true)))
+            Spacer()
+            VStack(alignment: .center) {
+                Image("thankyou")
+                textView(text: "Your pet's walk has been booked!", font: "Poppins-Regular", fontSize: 24, color: "blackColor")
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 62)
+            }
+            Spacer()
+            VStack {
+                BookingNavigation(text: "Back to home ", width: 350, font: "Poppins-Regular", fontSize: 24, height: 50)
+            }
+        }
+        .padding(.horizontal, 24)
+    }
+}
+
+#Preview {
+    ThankyouView()
+}

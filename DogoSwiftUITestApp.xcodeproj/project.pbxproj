@@ -57,6 +57,13 @@
 		D70563F82C05DADB00955B77 /* MainTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563F72C05DADB00955B77 /* MainTabbedView.swift */; };
 		D70563FA2C05EF8900955B77 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563F92C05EF8800955B77 /* BookingView.swift */; };
 		D70564052C08A29700955B77 /* BookingScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70564042C08A29600955B77 /* BookingScheduleView.swift */; };
+		D71A49CE2C0A25780003AAA8 /* ThankyouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71A49CD2C0A25780003AAA8 /* ThankyouView.swift */; };
+		D7A62A112C0998E8005D200B /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A102C0998E8005D200B /* CustomDatePicker.swift */; };
+		D7A62A132C099F04005D200B /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A122C099F04005D200B /* DateValue.swift */; };
+		D7A62A152C09F018005D200B /* DropDownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A142C09F018005D200B /* DropDownPicker.swift */; };
+		D7A62A172C09F7D7005D200B /* DropDownPickerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A162C09F7D7005D200B /* DropDownPickerState.swift */; };
+		D7A62A192C0A0254005D200B /* Verdana.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7A62A182C0A0254005D200B /* Verdana.ttf */; };
+		D7A62A1B2C0A027F005D200B /* Verdana-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7A62A1A2C0A027F005D200B /* Verdana-Regular.ttf */; };
 		D7BA8F2B2BFF962000724F3B /* DodoSwiftUITestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA8F2A2BFF962000724F3B /* DodoSwiftUITestAppApp.swift */; };
 		D7BA8F2D2BFF962000724F3B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA8F2C2BFF962000724F3B /* ContentView.swift */; };
 		D7BA8F2F2BFF962300724F3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BA8F2E2BFF962300724F3B /* Assets.xcassets */; };
@@ -115,6 +122,13 @@
 		D70563F72C05DADB00955B77 /* MainTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbedView.swift; sourceTree = "<group>"; };
 		D70563F92C05EF8800955B77 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		D70564042C08A29600955B77 /* BookingScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingScheduleView.swift; sourceTree = "<group>"; };
+		D71A49CD2C0A25780003AAA8 /* ThankyouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankyouView.swift; sourceTree = "<group>"; };
+		D7A62A102C0998E8005D200B /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
+		D7A62A122C099F04005D200B /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		D7A62A142C09F018005D200B /* DropDownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPicker.swift; sourceTree = "<group>"; };
+		D7A62A162C09F7D7005D200B /* DropDownPickerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPickerState.swift; sourceTree = "<group>"; };
+		D7A62A182C0A0254005D200B /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
+		D7A62A1A2C0A027F005D200B /* Verdana-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-Regular.ttf"; sourceTree = "<group>"; };
 		D7BA8F272BFF962000724F3B /* DogoSwiftUITestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DogoSwiftUITestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7BA8F2A2BFF962000724F3B /* DodoSwiftUITestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DodoSwiftUITestAppApp.swift; sourceTree = "<group>"; };
 		D7BA8F2C2BFF962000724F3B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -146,7 +160,9 @@
 				D70563992C04661C00955B77 /* Poppins-ExtraBoldItalic.ttf */,
 				D70563972C04661C00955B77 /* Poppins-ExtraLight.ttf */,
 				D705639B2C04661C00955B77 /* Poppins-ExtraLightItalic.ttf */,
+				D7A62A182C0A0254005D200B /* Verdana.ttf */,
 				D70563A52C04661D00955B77 /* Poppins-Italic.ttf */,
+				D7A62A1A2C0A027F005D200B /* Verdana-Regular.ttf */,
 				D705639F2C04661D00955B77 /* Poppins-Light.ttf */,
 				D70563A72C04661D00955B77 /* Poppins-LightItalic.ttf */,
 				D70563A32C04661D00955B77 /* Poppins-Medium.ttf */,
@@ -230,6 +246,10 @@
 				D70563E02C04E18E00955B77 /* SideMenu.swift */,
 				D70563F72C05DADB00955B77 /* MainTabbedView.swift */,
 				D70564042C08A29600955B77 /* BookingScheduleView.swift */,
+				D7A62A102C0998E8005D200B /* CustomDatePicker.swift */,
+				D7A62A142C09F018005D200B /* DropDownPicker.swift */,
+				D7A62A162C09F7D7005D200B /* DropDownPickerState.swift */,
+				D71A49CD2C0A25780003AAA8 /* ThankyouView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -250,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				D70563E22C04E1BE00955B77 /* SideMenuRowType.swift */,
+				D7A62A122C099F04005D200B /* DateValue.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -393,6 +414,7 @@
 				D70563D32C049D7300955B77 /* Montserrat-Italic.ttf in Resources */,
 				D70563D72C049D7300955B77 /* Montserrat-ExtraBold.ttf in Resources */,
 				D70563F22C04EF3000955B77 /* house.png in Resources */,
+				D7A62A1B2C0A027F005D200B /* Verdana-Regular.ttf in Resources */,
 				D70563F12C04EF3000955B77 /* notification.png in Resources */,
 				D70563B12C04661D00955B77 /* Poppins-Light.ttf in Resources */,
 				D70563AC2C04661D00955B77 /* Poppins-SemiBoldItalic.ttf in Resources */,
@@ -404,6 +426,7 @@
 				D70563DD2C049D7300955B77 /* Montserrat-ExtraLight.ttf in Resources */,
 				D70563D42C049D7300955B77 /* Montserrat-SemiBoldItalic.ttf in Resources */,
 				D70563D22C049D7300955B77 /* Montserrat-SemiBold.ttf in Resources */,
+				D7A62A192C0A0254005D200B /* Verdana.ttf in Resources */,
 				D70563B22C04661D00955B77 /* Poppins-ThinItalic.ttf in Resources */,
 				D70563B52C04661D00955B77 /* Poppins-Medium.ttf in Resources */,
 				D7BA8F2F2BFF962300724F3B /* Assets.xcassets in Resources */,
@@ -424,13 +447,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D70563E32C04E1BE00955B77 /* SideMenuRowType.swift in Sources */,
+				D71A49CE2C0A25780003AAA8 /* ThankyouView.swift in Sources */,
 				D70564052C08A29700955B77 /* BookingScheduleView.swift in Sources */,
+				D7A62A112C0998E8005D200B /* CustomDatePicker.swift in Sources */,
 				D7BA8F2D2BFF962000724F3B /* ContentView.swift in Sources */,
 				D70563F62C05DA9800955B77 /* SideMenuMainView.swift in Sources */,
 				D70563FA2C05EF8900955B77 /* BookingView.swift in Sources */,
 				D70563DF2C04B2C700955B77 /* HomeView.swift in Sources */,
 				D70563E12C04E18E00955B77 /* SideMenu.swift in Sources */,
+				D7A62A172C09F7D7005D200B /* DropDownPickerState.swift in Sources */,
 				D7BA8F2B2BFF962000724F3B /* DodoSwiftUITestAppApp.swift in Sources */,
+				D7A62A132C099F04005D200B /* DateValue.swift in Sources */,
+				D7A62A152C09F018005D200B /* DropDownPicker.swift in Sources */,
 				D70563952C00B91100955B77 /* SplashView.swift in Sources */,
 				D70563F82C05DADB00955B77 /* MainTabbedView.swift in Sources */,
 			);

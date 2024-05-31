@@ -68,36 +68,28 @@ struct HomeView: View {
                             .frame(width: .infinity, height: 153)
                             .cornerRadius(8)
                             .overlay {
-                                //                            VStack {
-                                //                                Circle()
-                                //                                    .fill(Color("lightPurpleColor"))
-                                //                                    .frame(height: 200)
-                                //                                    .offset(x: -130, y: 10)
-                                ////                                    .clipped()
-                                //                            }
+                                HStack {
+                                    VStack {
+                                        Image("homeImage")
+                                            .resizable()
+                                            .frame(width: 147, height: 170)
+                                            .cornerRadius(8)
+                                    }
+                                    .offset(y: -8)
+                                    Spacer()
+                                    VStack(alignment: .trailing) {
+                                        VStack(alignment: .trailing)  {
+                                            HStack {
+                                                textView(text: "Otto is giving you", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
+                                                textView(text: "20%", font: "Poppins-Black", fontSize: 28, color: "blackColor")
+                                            }
+                                            textView(text: "on your first booking", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
+                                        }
+                                        BookingNavigation(text: "Enjoy", width: 74, font: "Poppins-Medium", fontSize: 16, height: 34)
+                                    }
+                                }
+                                .padding(.trailing)
                             }
-                        //                    .overlay {
-                        //                        Circle()
-                        //                            .fill(Color("lightPurpleColor"))
-                        //                            .frame(width: 358, height: 190)
-                        //                            .offset(x: -130)
-                        ////                            .overlay {
-                        ////                                GeometryReader { geometry in
-                        ////                                    Image("dogoImage2")
-                        ////                                        .resizable()
-                        ////                                        .aspectRatio(contentMode: .fill)
-                        ////                                        .frame(width: 180, height: 200)
-                        ////                                }
-                        ////                            }
-                        //                    }
-                        //                Circle()
-                        //                    .fill(Color("profileColor").opacity(0.3))
-                        //                    .frame(width: 358, height: 150)
-                        //                    .offset(x: -150)
-                        //                Spacer()
-                        //                VStack {
-                        //
-                        //                }
                     }
                     
                     VStack (spacing: 16) {
@@ -110,13 +102,13 @@ struct HomeView: View {
                         HStack {
                             Rectangle()
                                 .fill(.clear)
-                                .frame(width: .infinity, height: 153)
+                                .frame(width: .infinity, height: 116)
                                 .cornerRadius(8)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
                                         .stroke(Color("menuShadowColor"), lineWidth: 1)
                                 )
-                                .shadow(color: .gray, radius: 1, x: 0, y: 0)
+                                .shadow(radius: 5)
                                 .overlay {
                                     HStack {
                                         VStack {
