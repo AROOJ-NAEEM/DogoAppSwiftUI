@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct SplashView: View {
     
     @State var showLoginView: Bool = false
     @State var password: String = ""
     @State var showHomeView: Bool
+    @State private var email: String = ""
+    @State private var isSecured: Bool = true
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         NavigationView {
@@ -22,7 +27,7 @@ struct SplashView: View {
                 .shadow(color: Color("shadowColor"), radius: 30, x: 0, y: 0)
                 .overlay() {
                     if showLoginView {
-                        LoginViewContent("Enter your password", password: $password, showHomeView: $showHomeView).body
+                        LoginViewContent("Enter your password", password: $password, email: $email, isSecured: $isSecured, showAlert: $showAlert, alertMessage: $alertMessage, showHomeView: $showHomeView).body
                     } else {
                         SplashViewContent().body
                     }
@@ -96,15 +101,20 @@ struct SplashViewContent: View, ContentViewProtocol {
 struct LoginViewContent: View, ContentViewProtocol {
     
     @Binding private var showHomeView: Bool
-    @State private var email: String = ""
+    @Binding private var email: String
     @Binding private var password: String
-    @State private var isSecured: Bool
+    @Binding private var isSecured: Bool
+    @Binding private var showAlert: Bool
+    @Binding private var alertMessage: String
     private var passwordTitle: String = "Enter your password"
     
-    init(_ passwordTitle: String, password: Binding<String>, showHomeView: Binding<Bool> ) {
+    init(_ passwordTitle: String, password: Binding<String>, email: Binding<String>, isSecured: Binding<Bool>, showAlert: Binding<Bool>, alertMessage: Binding<String>, showHomeView: Binding<Bool> ) {
         self.passwordTitle = passwordTitle
         self._password = password
-        _isSecured = State(initialValue: true)
+        self._email = email
+        self._isSecured = isSecured
+        self._showAlert = showAlert
+        self._alertMessage = alertMessage
         self._showHomeView = showHomeView
     }
     
@@ -129,7 +139,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                             .clipShape(Circle())
                     }
                 )
-                
+            
             Text("Sign in")
                 .font(Font.custom("Poppins-Regular", size: 18))
                 .foregroundColor(Color("blackColor"))
@@ -157,12 +167,13 @@ struct LoginViewContent: View, ContentViewProtocol {
                     .resizable()
                     .frame(width: 32, height: 32)
                     .foregroundColor(Color("greyIconCOlor"))
-                if isSecured {
-                    secureField
-                } else {
-                    textField
+                Group {
+                    if isSecured {
+                        SecureField(passwordTitle, text: $password)
+                    } else {
+                        TextField(passwordTitle, text: $password)
+                    }
                 }
-                //              TextField("Enter your password", text: $email)
                 Button(action: {
                     isSecured.toggle()
                 }) {
@@ -196,7 +207,16 @@ struct LoginViewContent: View, ContentViewProtocol {
             .padding(.vertical, 5)
             
             Button(action: {
-                showHomeView = true
+                LoginViewModel().SignIn(email: email, password: password) { showHomeView, error in
+                    if showHomeView {
+                        self.showHomeView = showHomeView
+                    } else {
+                        if let error = error {
+                            self.showAlert = true
+                            self.alertMessage = error.localizedDescription
+                        }
+                    }
+                }
             }) {
                 Text("Enter")
                     .font(Font.custom("Poppins-Medium", size: 20))
@@ -204,6 +224,9 @@ struct LoginViewContent: View, ContentViewProtocol {
                     .background(Color("buttonColor"))
                     .foregroundColor(.white)
                     .cornerRadius(8)
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
             
             Spacer()

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		25280A8517626E0D5BC04A64 /* Pods_DogoSwiftUITestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FAD8B99861DA650CE8A5DE7 /* Pods_DogoSwiftUITestApp.framework */; };
 		D705638E2C0092CE00955B77 /* Lobster-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D705638D2C0092CE00955B77 /* Lobster-Regular.ttf */; };
 		D70563932C00AC5B00955B77 /* Mansalva-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D70563922C00AC5B00955B77 /* Mansalva-Regular.ttf */; };
 		D70563952C00B91100955B77 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563942C00B91100955B77 /* SplashView.swift */; };
@@ -58,6 +59,10 @@
 		D70563FA2C05EF8900955B77 /* BookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563F92C05EF8800955B77 /* BookingView.swift */; };
 		D70564052C08A29700955B77 /* BookingScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70564042C08A29600955B77 /* BookingScheduleView.swift */; };
 		D71A49CE2C0A25780003AAA8 /* ThankyouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71A49CD2C0A25780003AAA8 /* ThankyouView.swift */; };
+		D71A49D02C0DFEED0003AAA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71A49CF2C0DFEED0003AAA8 /* AppDelegate.swift */; };
+		D71A49D32C0DFFEA0003AAA8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71A49D22C0DFFEA0003AAA8 /* AuthManager.swift */; };
+		D71CA4592C0E1C6400353C00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71CA4582C0E1C6400353C00 /* GoogleService-Info.plist */; };
+		D71CA45C2C0E316F00353C00 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CA45B2C0E316F00353C00 /* LoginViewModel.swift */; };
 		D7A62A112C0998E8005D200B /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A102C0998E8005D200B /* CustomDatePicker.swift */; };
 		D7A62A132C099F04005D200B /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A122C099F04005D200B /* DateValue.swift */; };
 		D7A62A152C09F018005D200B /* DropDownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A142C09F018005D200B /* DropDownPicker.swift */; };
@@ -71,6 +76,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FAD8B99861DA650CE8A5DE7 /* Pods_DogoSwiftUITestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DogoSwiftUITestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B9A6B15A97250F3490118788 /* Pods-DogoSwiftUITestApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogoSwiftUITestApp.debug.xcconfig"; path = "Target Support Files/Pods-DogoSwiftUITestApp/Pods-DogoSwiftUITestApp.debug.xcconfig"; sourceTree = "<group>"; };
+		D48D476FD032773480F49A9E /* Pods-DogoSwiftUITestApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DogoSwiftUITestApp.release.xcconfig"; path = "Target Support Files/Pods-DogoSwiftUITestApp/Pods-DogoSwiftUITestApp.release.xcconfig"; sourceTree = "<group>"; };
 		D705638D2C0092CE00955B77 /* Lobster-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lobster-Regular.ttf"; sourceTree = "<group>"; };
 		D70563912C00AB9F00955B77 /* DogoSwiftUITestApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DogoSwiftUITestApp-Info.plist"; sourceTree = "<group>"; };
 		D70563922C00AC5B00955B77 /* Mansalva-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mansalva-Regular.ttf"; sourceTree = "<group>"; };
@@ -123,6 +131,10 @@
 		D70563F92C05EF8800955B77 /* BookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingView.swift; sourceTree = "<group>"; };
 		D70564042C08A29600955B77 /* BookingScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingScheduleView.swift; sourceTree = "<group>"; };
 		D71A49CD2C0A25780003AAA8 /* ThankyouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankyouView.swift; sourceTree = "<group>"; };
+		D71A49CF2C0DFEED0003AAA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D71A49D22C0DFFEA0003AAA8 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		D71CA4582C0E1C6400353C00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D71CA45B2C0E316F00353C00 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D7A62A102C0998E8005D200B /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		D7A62A122C099F04005D200B /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		D7A62A142C09F018005D200B /* DropDownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPicker.swift; sourceTree = "<group>"; };
@@ -141,12 +153,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25280A8517626E0D5BC04A64 /* Pods_DogoSwiftUITestApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3D94482344E04EF6EE7874A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2FAD8B99861DA650CE8A5DE7 /* Pods_DogoSwiftUITestApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0D7D773381EFE630ABF4771 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B9A6B15A97250F3490118788 /* Pods-DogoSwiftUITestApp.debug.xcconfig */,
+				D48D476FD032773480F49A9E /* Pods-DogoSwiftUITestApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D705638C2C0092AF00955B77 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +253,7 @@
 		D70563FD2C0609D900955B77 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				D71CA45A2C0E316200353C00 /* ViewModel */,
 				D70563FF2C0609FC00955B77 /* Views */,
 				D70564022C060B1500955B77 /* Widgets */,
 			);
@@ -232,6 +263,7 @@
 		D70563FE2C0609E200955B77 /* Infastructure */ = {
 			isa = PBXGroup;
 			children = (
+				D71A49D12C0DFFDF0003AAA8 /* Services */,
 			);
 			path = Infastructure;
 			sourceTree = "<group>";
@@ -262,6 +294,7 @@
 				D70563FE2C0609E200955B77 /* Infastructure */,
 				D70563FC2C0609D400955B77 /* Data */,
 				D70563FB2C0609CC00955B77 /* Domain */,
+				D71A49CF2C0DFEED0003AAA8 /* AppDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -293,12 +326,31 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		D71A49D12C0DFFDF0003AAA8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D71A49D22C0DFFEA0003AAA8 /* AuthManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D71CA45A2C0E316200353C00 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D71CA45B2C0E316F00353C00 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		D7BA8F1E2BFF962000724F3B = {
 			isa = PBXGroup;
 			children = (
 				D70563912C00AB9F00955B77 /* DogoSwiftUITestApp-Info.plist */,
+				D71CA4582C0E1C6400353C00 /* GoogleService-Info.plist */,
 				D7BA8F292BFF962000724F3B /* DodoSwiftUITestApp */,
 				D7BA8F282BFF962000724F3B /* Products */,
+				C0D7D773381EFE630ABF4771 /* Pods */,
+				A3D94482344E04EF6EE7874A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -335,17 +387,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D7BA8F352BFF962300724F3B /* Build configuration list for PBXNativeTarget "DogoSwiftUITestApp" */;
 			buildPhases = (
+				01C529D9346362D27E458E83 /* [CP] Check Pods Manifest.lock */,
 				D7BA8F232BFF962000724F3B /* Sources */,
 				D7BA8F242BFF962000724F3B /* Frameworks */,
 				D7BA8F252BFF962000724F3B /* Resources */,
+				68F502ED1851912F5370297E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DogoSwiftUITestApp;
-			packageProductDependencies = (
-			);
 			productName = DodoSwiftUITestApp;
 			productReference = D7BA8F272BFF962000724F3B /* DogoSwiftUITestApp.app */;
 			productType = "com.apple.product-type.application";
@@ -374,8 +426,6 @@
 				Base,
 			);
 			mainGroup = D7BA8F1E2BFF962000724F3B;
-			packageReferences = (
-			);
 			productRefGroup = D7BA8F282BFF962000724F3B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -391,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D70563D02C049D7300955B77 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				D71CA4592C0E1C6400353C00 /* GoogleService-Info.plist in Resources */,
 				D70563B32C04661D00955B77 /* Poppins-Black.ttf in Resources */,
 				D70563AB2C04661D00955B77 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				D70563CF2C049D7300955B77 /* Montserrat-LightItalic.ttf in Resources */,
@@ -441,6 +492,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01C529D9346362D27E458E83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DogoSwiftUITestApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68F502ED1851912F5370297E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DogoSwiftUITestApp/Pods-DogoSwiftUITestApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DogoSwiftUITestApp/Pods-DogoSwiftUITestApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DogoSwiftUITestApp/Pods-DogoSwiftUITestApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D7BA8F232BFF962000724F3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -453,7 +546,10 @@
 				D7BA8F2D2BFF962000724F3B /* ContentView.swift in Sources */,
 				D70563F62C05DA9800955B77 /* SideMenuMainView.swift in Sources */,
 				D70563FA2C05EF8900955B77 /* BookingView.swift in Sources */,
+				D71A49D32C0DFFEA0003AAA8 /* AuthManager.swift in Sources */,
+				D71CA45C2C0E316F00353C00 /* LoginViewModel.swift in Sources */,
 				D70563DF2C04B2C700955B77 /* HomeView.swift in Sources */,
+				D71A49D02C0DFEED0003AAA8 /* AppDelegate.swift in Sources */,
 				D70563E12C04E18E00955B77 /* SideMenu.swift in Sources */,
 				D7A62A172C09F7D7005D200B /* DropDownPickerState.swift in Sources */,
 				D7BA8F2B2BFF962000724F3B /* DodoSwiftUITestAppApp.swift in Sources */,
@@ -588,6 +684,7 @@
 		};
 		D7BA8F362BFF962300724F3B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9A6B15A97250F3490118788 /* Pods-DogoSwiftUITestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -595,6 +692,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DodoSwiftUITestApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DogoSwiftUITestApp-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -621,6 +719,7 @@
 		};
 		D7BA8F372BFF962300724F3B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D48D476FD032773480F49A9E /* Pods-DogoSwiftUITestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -628,6 +727,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DodoSwiftUITestApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DogoSwiftUITestApp-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

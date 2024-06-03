@@ -166,9 +166,7 @@ struct Bookings: View {
                     HStack {
                         VStack (spacing: 5) {
                             HStack (spacing: 8) {
-                                Text("Emily T")
-                                    .font(Font.custom("Poppins-Regular", size: 14))
-                                    .foregroundColor(Color("blackColor"))
+                                textView(text: "Emily T", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                 Spacer()
                             }
                             
@@ -177,9 +175,7 @@ struct Bookings: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 16, height: 16)
-                                Text("In your home")
-                                    .font(Font.custom("Poppins-Medium", size: 14))
-                                    .foregroundColor(Color("blackColor"))
+                                textView(text: "In your home", font: "Poppins-Medium", fontSize: 14, color: "blackColor")
                                 Spacer()
                             }
                             
@@ -189,9 +185,7 @@ struct Bookings: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 10, height: 12)
                                     .foregroundColor(Color("yellowColor"))
-                                Text("8:00 am - 9:00 am")
-                                    .font(Font.custom("Poppins-Regular", size: 14))
-                                    .foregroundColor(Color("blackColor"))
+                                textView(text: "8:00 am - 9:00 am", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                 Spacer()
                             }
                         }
@@ -200,12 +194,8 @@ struct Bookings: View {
                         Spacer()
                         
                         VStack {
-                            Text("MAY")
-                                .font(Font.custom("Poppins-Medium", size: 16))
-                                .foregroundColor(Color("blackColor"))
-                            Text("26")
-                                .font(Font.custom("Poppins-SemiBold", size: 24))
-                                .foregroundColor(Color("blackColor"))
+                            textView(text: "MAY", font: "Poppins-Medium", fontSize: 16, color: "blackColor")
+                            textView(text: "26", font: "Poppins-SemiBOld", fontSize: 24, color: "blackColor")
                         }
                         .padding(.trailing, 16)
                     }

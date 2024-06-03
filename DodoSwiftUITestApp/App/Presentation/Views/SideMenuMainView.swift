@@ -62,13 +62,9 @@ struct SideMenuMainView: View {
                     .padding()
                 Spacer()
                 VStack {
-                    Text("Coleen H")
-                        .font(Font.custom("Montserrat-Regular", size: 14))
-                        .foregroundColor(Color("blackColor"))
+                    textView(text: "Coleen H", font: "Montserrat-Regular", fontSize: 14, color: "blackColor")
                     Button(action: {}, label: {
-                        Text("Edit profile")
-                            .font(Font.custom("Poppins-Medium", size: 14))
-                            .foregroundColor(Color("darkBlackColor"))
+                        textView(text: "Edit profile", font: "Poppins-Medium", fontSize: 14, color: "darkBlackColor")
                     })
                 }
                 .padding()
@@ -93,13 +89,9 @@ struct SideMenuMainView: View {
                                 .frame(width: 24, height: 24)
                         }
                         .frame(width: 24, height: 24)
-                        Text(title)
-                            .font(Font.custom("Poppins-Regular", size: 14))
-                            .foregroundColor(Color("blackColor"))
+                        textView(text: title, font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                         if label != "" {
-                            Text(label)
-                                .font(Font.custom("Poppins-Regular", size: 14))
-                                .foregroundColor(Color("blackColor"))
+                            textView(text: label, font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                 .frame(width: 23, height: 23)
                                 .background(Color("yellowColor"))
                                 .cornerRadius(50)
@@ -119,9 +111,7 @@ struct SideMenuMainView: View {
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 24, height: 24)
                 .padding(.leading)
-            Text("Log out")
-                .font(Font.custom("Poppins-Regular", size: 16))
-                .foregroundColor(Color("blackColor"))
+            textView(text: "Log out", font: "Poppins-Regular", fontSize: 16, color: "blackColor")
         }
         .padding(24)
     }
@@ -129,9 +119,7 @@ struct SideMenuMainView: View {
     struct DogoLogoView: View {
         var text: String
         var body: some View {
-            Text(text)
-                .font(Font.custom("Lobster-Regular", size: 49.66))
-                .foregroundColor(Color("profileColor"))
+            textView(text: text, font: "Lobster-Regular", fontSize: 49.66, color: "profileColor")
                 .padding(.horizontal, 24)
         }
     }
