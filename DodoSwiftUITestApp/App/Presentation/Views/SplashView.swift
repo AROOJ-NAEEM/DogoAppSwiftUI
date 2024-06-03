@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FirebaseAuth
 
 struct SplashView: View {
     
@@ -209,7 +208,16 @@ struct LoginViewContent: View, ContentViewProtocol {
             Button(action: {
                 LoginViewModel().SignIn(email: email, password: password) { showHomeView, error in
                     if showHomeView {
-                        self.showHomeView = showHomeView
+                        let emailComponents = email.components(separatedBy: "@")
+                        let username = emailComponents.first ?? "Unknown"
+                        let userRef = AuthManager.db.collection("users").document(AuthManager.auth.currentUser!.uid)
+                        userRef.setData(["username": username], merge: true) { error in
+                                if let error = error {
+                                    print("Error adding document: \(error.localizedDescription)")
+                                } else {
+                                    self.showHomeView = showHomeView
+                                }
+                            }
                     } else {
                         if let error = error {
                             self.showAlert = true
@@ -241,7 +249,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                         // action
                     }) {
                         HStack {
-                            Image(systemName: "apple.logo")
+                            Image("facebook")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 32, height: 30.67)
@@ -259,9 +267,19 @@ struct LoginViewContent: View, ContentViewProtocol {
                     
                     Button(action: {
                         // action
+                        Task {
+                            do {
+                                try await AuthManager.shared.googleOauth { result in
+                                    showHomeView = result
+                                }
+                            } catch let e {
+                                print(e)
+                                let err = e.localizedDescription
+                            }
+                        }
                     }) {
                         HStack {
-                            Image(systemName: "apple.logo")
+                            Image("Google")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 32, height: 30.67)

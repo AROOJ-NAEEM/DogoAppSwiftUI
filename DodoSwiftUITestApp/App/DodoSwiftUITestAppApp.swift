@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 @main
 struct DodoSwiftUITestAppApp: App {
@@ -14,7 +15,10 @@ struct DodoSwiftUITestAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SplashView(showHomeView: false)
+            SplashView(showHomeView: false).onOpenURL { url in
+                //Handle Google Oauth URL
+                GIDSignIn.sharedInstance.handle(url)
+            }
         }
     }
 }
