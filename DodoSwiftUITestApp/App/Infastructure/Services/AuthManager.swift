@@ -9,8 +9,12 @@ import FirebaseAuth
 import GoogleSignIn
 import FirebaseCore
 import FirebaseFirestoreInternal
+import AuthenticationServices
+import CryptoKit
 
 class AuthManager {
+    
+    fileprivate var currentNonce: String?
     
     static let shared = AuthManager()
     static let auth = Auth.auth()
@@ -66,6 +70,67 @@ class AuthManager {
     func logout() async throws {
         GIDSignIn.sharedInstance.signOut()
         try Auth.auth().signOut()
+    }
+    
+    func appleLogin(authorization: ASAuthorization, completion: @escaping(Bool) -> Void) {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            guard let nonce = currentNonce else {
+                fatalError("Invalid state: A login callback was received, but no login request was sent.")
+            }
+            guard let appleIDToken = appleIDCredential.identityToken else {
+                fatalError("Invalid state: A login callback was received, but no login request was sent.")
+            }
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+                return
+            }
+            let credential = OAuthProvider.credential(withProviderID: "apple.com",idToken: idTokenString,rawNonce: nonce)
+            Auth.auth().signIn(with: credential) { (authResult, error) in
+                if (error != nil) {
+                    print(error?.localizedDescription as Any)
+                    return
+                }
+                completion(true)
+            }
+        }
+    }
+    
+    private func randomNonceString(length: Int = 32) -> String {
+        precondition(length > 0)
+        var randomBytes = [UInt8](repeating: 0, count: length)
+        let errorCode = SecRandomCopyBytes(kSecRandomDefault, randomBytes.count, &randomBytes)
+        if errorCode != errSecSuccess {
+            fatalError(
+                "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
+            )
+        }
+        
+        let charset: [Character] =
+        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        
+        let nonce = randomBytes.map { byte in
+            // Pick a random character from the set, wrapping around if needed.
+            charset[Int(byte) % charset.count]
+        }
+        
+        return String(nonce)
+    }
+    
+    private func sha256(_ input: String) -> String {
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
     }
 }
 extension String: Error {}

@@ -13,7 +13,7 @@ struct MainTabbedView: View {
     
     var body: some View {
         ZStack{
-            if selectedSideMenuTab == 0 {
+            if selectedSideMenuTab == 0 || selectedSideMenuTab == 2 || selectedSideMenuTab == 3 {
                 HomeView(presentSideMenu: $presentSideMenu)
                                     .tag(0)
             }

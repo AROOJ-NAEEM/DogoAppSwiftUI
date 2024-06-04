@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AuthenticationServices
 
 struct SplashView: View {
     
@@ -105,6 +106,7 @@ struct LoginViewContent: View, ContentViewProtocol {
     @Binding private var isSecured: Bool
     @Binding private var showAlert: Bool
     @Binding private var alertMessage: String
+    
     private var passwordTitle: String = "Enter your password"
     
     init(_ passwordTitle: String, password: Binding<String>, email: Binding<String>, isSecured: Binding<Bool>, showAlert: Binding<Bool>, alertMessage: Binding<String>, showHomeView: Binding<Bool> ) {
@@ -118,8 +120,8 @@ struct LoginViewContent: View, ContentViewProtocol {
     }
     
     var body: some View {
-        let secureField = SecureField(passwordTitle, text: $password)
-        let textField = TextField(passwordTitle, text: $password)
+        let _ = SecureField(passwordTitle, text: $password)
+        let _ = TextField(passwordTitle, text: $password)
         VStack {
             Spacer()
                 .padding(.top, 57)
@@ -212,12 +214,12 @@ struct LoginViewContent: View, ContentViewProtocol {
                         let username = emailComponents.first ?? "Unknown"
                         let userRef = AuthManager.db.collection("users").document(AuthManager.auth.currentUser!.uid)
                         userRef.setData(["username": username], merge: true) { error in
-                                if let error = error {
-                                    print("Error adding document: \(error.localizedDescription)")
-                                } else {
-                                    self.showHomeView = showHomeView
-                                }
+                            if let error = error {
+                                print("Error adding document: \(error.localizedDescription)")
+                            } else {
+                                self.showHomeView = showHomeView
                             }
+                        }
                     } else {
                         if let error = error {
                             self.showAlert = true
@@ -294,24 +296,42 @@ struct LoginViewContent: View, ContentViewProtocol {
                     .buttonStyle(PlainButtonStyle())
                     .frame(height: 46.67)
                     
-                    Button(action: {
-                        // action
-                    }) {
-                        HStack {
-                            Image(systemName: "apple.logo")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 32, height: 30.67)
-                            Text("Apple")
-                                .font(Font.custom("Montserrat-Medium", size: 14))
+                    SignInWithAppleButton(.continue) { request in
+                        // authorization request for an Apple ID
+                    } onCompletion: { result in
+                        // completion handler that is called when the sign-in completes
+                        switch result {
+                        case .success(let authorization):
+                            LoginViewModel().appleLogin(authorization: authorization) { showHomeView in
+                                DispatchQueue.main.async {
+                                    self.showHomeView = showHomeView
+                                }
+                            }
+                        case .failure(let error):
+                            print("Could not authenticate: \(error.localizedDescription)")
                         }
-                        .padding(10)
-                        .background(Color("textfieldColor"))
-                        .foregroundColor(.black)
-                        .cornerRadius(8)
                     }
                     .buttonStyle(PlainButtonStyle())
                     .frame(height: 46.67)
+                    //                    Button(action: {
+                    //                        // action
+                    //
+                    //                    }) {
+                    //                        HStack {
+                    //                            Image(systemName: "apple.logo")
+                    //                                .resizable()
+                    //                                .aspectRatio(contentMode: .fit)
+                    //                                .frame(width: 32, height: 30.67)
+                    //                            Text("Apple")
+                    //                                .font(Font.custom("Montserrat-Medium", size: 14))
+                    //                        }
+                    //                        .padding(10)
+                    //                        .background(Color("textfieldColor"))
+                    //                        .foregroundColor(.black)
+                    //                        .cornerRadius(8)
+                    //                    }
+                    //                    .buttonStyle(PlainButtonStyle())
+                    //                    .frame(height: 46.67)
                     
                 }
             }

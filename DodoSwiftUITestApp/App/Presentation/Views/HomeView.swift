@@ -35,7 +35,7 @@ struct HomeView: View {
                     
                     HStack(spacing: 2) {
                         textView(text: "Hello,", font: "Poppins-Regular", fontSize: 24, color: "blackColor")
-                        textView(text: " \(AuthManager.auth.currentUser!.displayName ?? "Username not found")!", font: "Poppins-Bold", fontSize: 24, color: "blackColor")
+                        textView(text: " \(AuthManager.auth.currentUser?.displayName ?? "Username not found")!", font: "Poppins-Bold", fontSize: 24, color: "blackColor")
                     }
                     Spacer()
                     
