@@ -82,12 +82,13 @@ struct bookingHeaderView: View {
 
 struct BookingButton: View {
     var body: some View {
-        BookingNavigation(text: "Booking", width: 350, font: "Poppins-Regular", fontSize: 24, height: 50)
+        BookingNavigation(viewName: BookingScheduleView(), text: "Booking", width: 350, font: "Poppins-Regular", fontSize: 24, height: 50)
         .offset(y: 45)
     }
 }
 
-struct BookingNavigation: View {
+struct BookingNavigation<Content: View>: View {
+    @State var viewName: Content
     @State var text: String
     @State var width: CGFloat
     @State var font: String
@@ -96,7 +97,7 @@ struct BookingNavigation: View {
     
     var body: some View {
         NavigationLink() {
-            BookingScheduleView()
+            viewName
                 .navigationBarBackButtonHidden(true)
                 .navigationBarHidden(true)
             

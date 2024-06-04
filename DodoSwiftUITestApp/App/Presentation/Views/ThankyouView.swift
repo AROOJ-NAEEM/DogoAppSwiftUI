@@ -20,7 +20,7 @@ struct ThankyouView: View {
             }
             Spacer()
             VStack {
-                BookingNavigation(text: "Back to home ", width: 350, font: "Poppins-Regular", fontSize: 24, height: 50)
+                BookingNavigation(viewName: MainTabbedView(), text: "Back to home ", width: 350, font: "Poppins-Regular", fontSize: 24, height: 50)
             }
         }
         .padding(.horizontal, 24)

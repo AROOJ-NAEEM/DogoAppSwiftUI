@@ -24,7 +24,7 @@ struct BookingScheduleView: View {
     var body: some View {
         VStack(spacing: 24) {
             Spacer()
-            NavigationHeader(viewName: ThankyouView())
+            NavigationHeader(viewName: BookingView(presentSideMenu: .constant(true)))
             VStack(spacing: 16) {
                 HStack {
                     DateView(text: "Select the date")
@@ -63,7 +63,7 @@ struct BookingScheduleView: View {
                 }
             }
             VStack {
-                BookingNavigation(text: "Next", width: 350,  font: "Poppins-Regular", fontSize: 24, height: 50)
+                BookingNavigation(viewName: ThankyouView(), text: "Next", width: 350,  font: "Poppins-Regular", fontSize: 24, height: 50)
             }
             Spacer()
         }

@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct HomeView: View {
     
     @Binding var presentSideMenu: Bool
     @State private var search: String = ""
+    @ObservedObject var viewModel = HomeViewModel()
     
     var body: some View {
         ZStack {
@@ -82,7 +84,7 @@ struct HomeView: View {
                                         }
                                         textView(text: "on your first booking", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                     }
-                                    BookingNavigation(text: "Enjoy", width: 74, font: "Poppins-Medium", fontSize: 16, height: 34)
+                                    BookingNavigation(viewName: BookingView(presentSideMenu: .constant(true)), text: "Enjoy", width: 74, font: "Poppins-Medium", fontSize: 16, height: 34)
                                 }
                             }
                             .padding(.trailing)
@@ -164,22 +166,24 @@ struct HomeView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
-                            ForEach(0..<10) {_ in
+                            ForEach(viewModel.dogSitters, id: \.id) {dogSitter in
                                 VStack (alignment: .leading) {
                                     ZStack {
-                                        Image("scrollViewImage")
+                                        WebImage(url: URL(string: dogSitter.profile))
                                             .resizable()
+                                            .indicator(.activity)
                                             .frame(width: 120, height: 120)
+                                            .cornerRadius(8)
                                         ZStack {
-                                            textView(text: "  $15/hour  ", font: "Poppins-Medium", fontSize: 12, color: "white")
+                                            textView(text: "  $\(dogSitter.charges)/hour  ", font: "Poppins-Medium", fontSize: 12, color: "white")
                                                 .background(Color("buttonColor"))
                                                 .cornerRadius(50)
                                                 .offset(x: 30, y: -60)
                                         }
                                     }
-                                    textView(text: "Emily T", font: "Poppins-Medium", fontSize: 16, color: "blackColor")
+                                    textView(text: dogSitter.name, font: "Poppins-Medium", fontSize: 16, color: "blackColor")
                                     HStack (spacing: 0) {
-                                        ForEach(0..<5) {_ in
+                                        ForEach(0..<dogSitter.rating) {_ in
                                             Image(systemName: "star.fill")
                                                 .foregroundColor(Color("ratingColor"))
                                                 .overlay {
@@ -187,13 +191,23 @@ struct HomeView: View {
                                                         .foregroundColor(Color("menuShadowColor"))
                                                 }
                                         }
+                                        ForEach(0..<(5 - dogSitter.rating)) {_ in
+                                            Image(systemName: "star")
+                                                .foregroundColor(Color("ratingColor"))
+                                                .overlay {
+                                                    Image(systemName: "star")
+                                                        .foregroundColor(Color("menuShadowColor"))
+                                                }
+                                        }
+
                                     }
-                                    textView(text: "128 tours", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
+                                    textView(text: "\(dogSitter.tours) tours", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                 }
                             }
                         }
                         .padding(.top, 10)
                     }
+                    .onAppear { viewModel.fetchData() }
                 }
                 Spacer()
             }

@@ -9,6 +9,6 @@ target 'DogoSwiftUITestApp' do
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
   pod 'GoogleSignIn'
-
+  pod 'SDWebImageSwiftUI'
 
 end

@@ -63,6 +63,8 @@
 		D71A49D32C0DFFEA0003AAA8 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71A49D22C0DFFEA0003AAA8 /* AuthManager.swift */; };
 		D71CA45C2C0E316F00353C00 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CA45B2C0E316F00353C00 /* LoginViewModel.swift */; };
 		D71CA4602C0E3D6300353C00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D71CA45F2C0E3D6300353C00 /* GoogleService-Info.plist */; };
+		D71CA4632C0F975300353C00 /* DogSitterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CA4622C0F975300353C00 /* DogSitterModel.swift */; };
+		D71CA4652C0F97D200353C00 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CA4642C0F97D200353C00 /* HomeViewModel.swift */; };
 		D7A62A112C0998E8005D200B /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A102C0998E8005D200B /* CustomDatePicker.swift */; };
 		D7A62A132C099F04005D200B /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A122C099F04005D200B /* DateValue.swift */; };
 		D7A62A152C09F018005D200B /* DropDownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A142C09F018005D200B /* DropDownPicker.swift */; };
@@ -136,6 +138,8 @@
 		D71CA45B2C0E316F00353C00 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D71CA45F2C0E3D6300353C00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D71CA4612C0F5A8100353C00 /* DogoSwiftUITestApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DogoSwiftUITestApp.entitlements; sourceTree = "<group>"; };
+		D71CA4622C0F975300353C00 /* DogSitterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogSitterModel.swift; sourceTree = "<group>"; };
+		D71CA4642C0F97D200353C00 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D7A62A102C0998E8005D200B /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		D7A62A122C099F04005D200B /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		D7A62A142C09F018005D200B /* DropDownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPicker.swift; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				D70563E22C04E1BE00955B77 /* SideMenuRowType.swift */,
+				D71CA4622C0F975300353C00 /* DogSitterModel.swift */,
 				D7A62A122C099F04005D200B /* DateValue.swift */,
 			);
 			path = Models;
@@ -339,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				D71CA45B2C0E316F00353C00 /* LoginViewModel.swift */,
+				D71CA4642C0F97D200353C00 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 				D70563E32C04E1BE00955B77 /* SideMenuRowType.swift in Sources */,
 				D71A49CE2C0A25780003AAA8 /* ThankyouView.swift in Sources */,
 				D70564052C08A29700955B77 /* BookingScheduleView.swift in Sources */,
+				D71CA4652C0F97D200353C00 /* HomeViewModel.swift in Sources */,
 				D7A62A112C0998E8005D200B /* CustomDatePicker.swift in Sources */,
 				D7BA8F2D2BFF962000724F3B /* ContentView.swift in Sources */,
 				D70563F62C05DA9800955B77 /* SideMenuMainView.swift in Sources */,
@@ -555,6 +562,7 @@
 				D70563E12C04E18E00955B77 /* SideMenu.swift in Sources */,
 				D7A62A172C09F7D7005D200B /* DropDownPickerState.swift in Sources */,
 				D7BA8F2B2BFF962000724F3B /* DodoSwiftUITestAppApp.swift in Sources */,
+				D71CA4632C0F975300353C00 /* DogSitterModel.swift in Sources */,
 				D7A62A132C099F04005D200B /* DateValue.swift in Sources */,
 				D7A62A152C09F018005D200B /* DropDownPicker.swift in Sources */,
 				D70563952C00B91100955B77 /* SplashView.swift in Sources */,
