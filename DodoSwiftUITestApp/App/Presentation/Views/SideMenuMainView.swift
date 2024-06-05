@@ -13,6 +13,7 @@ struct SideMenuMainView: View {
     @Binding var presentSideMenu: Bool
     
     var body: some View {
+        NavigationView {
             HStack {
                 ZStack{
                     Rectangle()
@@ -38,8 +39,9 @@ struct SideMenuMainView: View {
                         
                         DividerView(padding: 20)
                         LogoutView()
-                        
-                        
+                            .onTapGesture {
+                                try? AuthManager.auth.signOut()
+                            }
                     }
                     .padding(.top, 57)
                     .frame(width: 257)
@@ -51,6 +53,7 @@ struct SideMenuMainView: View {
                 Spacer()
             }
             .background(.clear)
+        }
         }
         
         func ProfileImageView() -> some View{
@@ -106,12 +109,15 @@ struct SideMenuMainView: View {
     
     func LogoutView() -> some View{
         HStack {
-            Image("logout")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 24, height: 24)
-                .padding(.leading)
-            textView(text: "Log out", font: "Poppins-Regular", fontSize: 16, color: "blackColor")
+            NavigationLink(destination: SplashView(showHomeView: false).navigationBarBackButtonHidden(true)) {
+                Image("logout")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 24, height: 24)
+                    .padding(.leading)
+                textView(text: "Log out", font: "Poppins-Regular", fontSize: 16, color: "blackColor")
+            }
+            .navigationBarTitle("")
         }
         .padding(24)
     }
