@@ -154,6 +154,15 @@ struct LoginViewContent: View, ContentViewProtocol {
                     .foregroundColor(Color("greyIconCOlor"))
                 
                 TextField("Enter your e-mail", text: $email)
+                    .overlay {
+                        if email.isEmpty {
+                            HStack {
+                                Text("Enter your e-mail").foregroundColor(Color("greyIconCOlor"))
+                                Spacer()
+                            }
+                        }
+                    }
+                    .foregroundColor(Color("blackColor"))
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
@@ -171,8 +180,26 @@ struct LoginViewContent: View, ContentViewProtocol {
                 Group {
                     if isSecured {
                         SecureField(passwordTitle, text: $password)
+                            .overlay {
+                                if password.isEmpty {
+                                    HStack {
+                                        Text(passwordTitle).foregroundColor(Color("greyIconCOlor"))
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .foregroundColor(Color("blackColor"))
                     } else {
                         TextField(passwordTitle, text: $password)
+                            .overlay {
+                                if password.isEmpty {
+                                    HStack {
+                                        Text(passwordTitle).foregroundColor(Color("greyIconCOlor"))
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .foregroundColor(Color("blackColor"))
                     }
                 }
                 Button(action: {
@@ -228,7 +255,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                     }
                 }
             }) {
-                Text("Enter")
+                Text("Sign In")
                     .font(Font.custom("Poppins-Medium", size: 20))
                     .frame(width: 358, height: 50)
                     .background(Color("buttonColor"))
@@ -246,7 +273,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                 Text("Or continue with")
                     .font(Font.custom("Poppins-Regular", size: 16))
                     .foregroundColor(Color("blackColor"))
-                HStack {
+                HStack() {
                     Button(action: {
                         // action
                     }) {
@@ -295,7 +322,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .frame(height: 46.67)
-                    
+                    Spacer()
                     SignInWithAppleButton(.continue) { request in
                         // authorization request for an Apple ID
                     } onCompletion: { result in
@@ -311,28 +338,9 @@ struct LoginViewContent: View, ContentViewProtocol {
                             print("Could not authenticate: \(error.localizedDescription)")
                         }
                     }
+                    .signInWithAppleButtonStyle(.whiteOutline)
                     .buttonStyle(PlainButtonStyle())
                     .frame(height: 46.67)
-                    //                    Button(action: {
-                    //                        // action
-                    //
-                    //                    }) {
-                    //                        HStack {
-                    //                            Image(systemName: "apple.logo")
-                    //                                .resizable()
-                    //                                .aspectRatio(contentMode: .fit)
-                    //                                .frame(width: 32, height: 30.67)
-                    //                            Text("Apple")
-                    //                                .font(Font.custom("Montserrat-Medium", size: 14))
-                    //                        }
-                    //                        .padding(10)
-                    //                        .background(Color("textfieldColor"))
-                    //                        .foregroundColor(.black)
-                    //                        .cornerRadius(8)
-                    //                    }
-                    //                    .buttonStyle(PlainButtonStyle())
-                    //                    .frame(height: 46.67)
-                    
                 }
             }
             .padding(.horizontal)

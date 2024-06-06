@@ -54,6 +54,15 @@ struct HomeView: View {
                         .foregroundColor(Color("greyIconCOlor"))
                     
                     TextField("Search by location, name ...", text: $search)
+                        .overlay {
+                            if search.isEmpty {
+                                HStack {
+                                    Text("Search by location, name ...").foregroundColor(Color("greyIconCOlor"))
+                                    Spacer()
+                                }
+                            }
+                        }
+                        .foregroundColor(Color("blackColor"))
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 8)
@@ -207,7 +216,7 @@ struct HomeView: View {
                         }
                         .padding(.top, 10)
                     }
-                    .onAppear { viewModel.fetchData() }
+                    .task { viewModel.fetchData() }
                 }
                 Spacer()
             }

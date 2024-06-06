@@ -25,5 +25,7 @@
 		<string>Verdana-Regular.ttf</string>
 		<string>Poppins-Black.ttf</string>
 	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

@@ -11,7 +11,9 @@ struct BookingScheduleView: View {
     
     @State var currentDate: Date = Date()
     @State var currentMonth = 0
-    @State var selection: String? = nil
+    @State var startTimeSelection: String? = nil
+    @State var endTimeSelection: String? = nil
+    @State var sitterSelection: String? = nil
     @State var maxWidth: CGFloat = 171
     @State var maxWidthForName: CGFloat = .infinity
     @State var clockIconName: String = "clock.circle"
@@ -19,7 +21,9 @@ struct BookingScheduleView: View {
     @State var timePlaceholder: String = "10:00 am"
     @State var sitterPlaceholder: String = "Joana G"
     
-    let dogSitters: [String] = ["Joana G", "Emily T", "Carly B"]
+    @ObservedObject var viewModel = BookingScheduleViewModel()
+    
+    @State private var dogSitters: [String] = [""]
     
     var body: some View {
         VStack(spacing: 24) {
@@ -42,32 +46,82 @@ struct BookingScheduleView: View {
                         .shadow(radius: 5)
                 }
             }
-            VStack(spacing: 16) {
+            VStack(spacing: 0) {
                 HStack {
                     DateView(text: "Select the time")
                     Spacer()
                 }
-                HStack {
-                    DropDownPicker(selection: $selection, maxWidth: $maxWidth, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, options: getTimeArray())
-                    Spacer()
-                    DropDownPicker(selection: $selection, maxWidth: $maxWidth, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, options: getTimeArray())
+                HStack(spacing: -20) {
+                    DropDownView(selection: $startTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
+                    
+                    .padding(.leading, -12)
+//                    Spacer()
+                    DropDownView(selection: $endTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
+                    
+                    .padding(.trailing, -12)
                 }
             }
-            VStack(spacing: 16) {
+            .padding(.bottom, -30)
+            VStack(spacing: 0) {
                 HStack {
                     DateView(text: "Select the dog sitter")
                     Spacer()
                 }
                 HStack {
-                    DropDownPicker(selection: $selection, maxWidth: $maxWidthForName, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, options: dogSitters)
+//                    DropDownPicker(selection: $sitterSelection, maxWidth: $maxWidthForName, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, options: viewModel.dogSittersName)
+//                        .zIndex(1)
+                    DropDownView(selection: $sitterSelection, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, options: viewModel.dogSittersName)
+                        .padding(.horizontal, -14)
                 }
             }
+            .padding(.bottom, -30)
             VStack {
-                BookingNavigation(viewName: ThankyouView(), text: "Next", width: 350,  font: "Poppins-Regular", fontSize: 24, height: 50)
+                NavigationLink() {
+                    if saveBooking() {
+                        ThankyouView()
+                            .navigationBarBackButtonHidden(true)
+                            .navigationBarHidden(true)
+                    }
+                    
+                } label: {
+                    textView(text: "Next", font: "Poppins-Regular", fontSize: 24, color: "white")
+                        .frame(width: 350, height: 50)
+                        .background(Color("buttonColor"))
+                        .cornerRadius(8)
+                }
             }
             Spacer()
         }
         .padding(.horizontal, 24)
+        .task {
+            viewModel.fetchData()
+        }
+    }
+    func saveBooking()-> Bool {
+        guard let startTime = startTimeSelection,
+              let endTime = endTimeSelection,
+              let sitter = sitterSelection
+        else {
+            print("Booking data incomplete")
+            return false
+        }
+        
+        let bookingData: [String: Any] = [
+            "date": currentDate,
+            "startTime": startTime,
+            "endTime": endTime,
+            "sitter": sitter
+        ]
+        
+        AuthManager.db.collection("bookings").addDocument(data: bookingData) { error in
+            if let error = error {
+                print("Error adding document: \(error)")
+            } else {
+                print("Booking added successfully")
+            }
+        }
+        return true
+        
     }
     
     func getTimeArray() -> [String] {
