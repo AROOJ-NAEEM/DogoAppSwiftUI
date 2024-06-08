@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import FirebaseFirestoreInternal
 
 struct BookingModel {
     var id = UUID()
-    var sitterName : String
-    var time: String
-    var date: Date
+    var date : Timestamp
+    var startTime: String
+    var endTime: String
+    var sitter: String
 }

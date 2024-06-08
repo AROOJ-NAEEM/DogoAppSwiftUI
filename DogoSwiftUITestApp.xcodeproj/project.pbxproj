@@ -68,6 +68,7 @@
 		D71CA4672C109ACA00353C00 /* BookingScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CA4662C109ACA00353C00 /* BookingScheduleViewModel.swift */; };
 		D71CA4692C10AF3800353C00 /* BookingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CA4682C10AF3800353C00 /* BookingModel.swift */; };
 		D71CA46B2C11FD8E00353C00 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CA46A2C11FD8E00353C00 /* DropDownView.swift */; };
+		D71CA46D2C14825100353C00 /* BookingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CA46C2C14825100353C00 /* BookingViewModel.swift */; };
 		D7A62A112C0998E8005D200B /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A102C0998E8005D200B /* CustomDatePicker.swift */; };
 		D7A62A132C099F04005D200B /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A122C099F04005D200B /* DateValue.swift */; };
 		D7A62A152C09F018005D200B /* DropDownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A142C09F018005D200B /* DropDownPicker.swift */; };
@@ -146,6 +147,7 @@
 		D71CA4662C109ACA00353C00 /* BookingScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingScheduleViewModel.swift; sourceTree = "<group>"; };
 		D71CA4682C10AF3800353C00 /* BookingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingModel.swift; sourceTree = "<group>"; };
 		D71CA46A2C11FD8E00353C00 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
+		D71CA46C2C14825100353C00 /* BookingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingViewModel.swift; sourceTree = "<group>"; };
 		D7A62A102C0998E8005D200B /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		D7A62A122C099F04005D200B /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		D7A62A142C09F018005D200B /* DropDownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPicker.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				D71CA45B2C0E316F00353C00 /* LoginViewModel.swift */,
 				D71CA4642C0F97D200353C00 /* HomeViewModel.swift */,
 				D71CA4662C109ACA00353C00 /* BookingScheduleViewModel.swift */,
+				D71CA46C2C14825100353C00 /* BookingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				D7A62A152C09F018005D200B /* DropDownPicker.swift in Sources */,
 				D70563952C00B91100955B77 /* SplashView.swift in Sources */,
 				D70563F82C05DADB00955B77 /* MainTabbedView.swift in Sources */,
+				D71CA46D2C14825100353C00 /* BookingViewModel.swift in Sources */,
 				D71CA46B2C11FD8E00353C00 /* DropDownView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

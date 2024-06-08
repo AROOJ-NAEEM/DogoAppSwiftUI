@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreInternal
 
 struct BookingView: View {
     @Binding var presentSideMenu: Bool
+    
+    @ObservedObject var viewModel = BookingViewModel()
     
     var body: some View {
         ZStack {
@@ -22,6 +25,10 @@ struct BookingView: View {
                     .edgesIgnoringSafeArea(.all)
                     bookingHeaderView(presentSideMenu: $presentSideMenu)
                         .padding(.horizontal, 24)
+                        .environmentObject(viewModel)
+                }
+                .task {
+                    viewModel.fetchBookingData()
                 }
             }
             .edgesIgnoringSafeArea(.all)
@@ -44,32 +51,28 @@ struct textView: View {
 struct bookingHeaderView: View {
     @State var gotoHome: Bool = false
     @Binding var presentSideMenu: Bool
+    @EnvironmentObject var viewModel: BookingViewModel
     var body: some View {
         VStack(spacing: 18){
             NavigationHeader(viewName: MainTabbedView())
+            
             ScrollView (.vertical, showsIndicators: false) {
                 VStack {
-                    HStack {
-                        textView(text: "May", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
-                        Spacer()
+                    ForEach(viewModel.groupedBookings.keys.sorted(), id: \.self) { month in
+                        Section(header: Text(month)) {
+                            HStack {
+                                textView(text: month.components(separatedBy: " ").first ?? "Month", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
+                                Spacer()
+                            }
+                            ForEach(viewModel.groupedBookings[month]!, id: \.id) { booking in
+                                let date = booking.date.dateValue()
+                                let calendar = Calendar.current
+                                let dayOfMonth = calendar.component(.day, from: date)
+                                Bookings(sitter: booking.sitter, date: "\(dayOfMonth)", Month: month.components(separatedBy: " ").first ?? "Month", timeStart: booking.startTime, timeEnd: booking.endTime)
+                            }
+                        }
                     }
-                    BookingsInMonth(items: 2)
                 }
-                VStack {
-                    HStack {
-                        textView(text: "April", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
-                        Spacer()
-                    }
-                    BookingsInMonth(items: 3)
-                }
-                VStack {
-                    HStack {
-                        textView(text: "March", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
-                        Spacer()
-                    }
-                    BookingsInMonth(items: 3)
-                }
-                //            .padding(.top, -70)
                 Spacer()
             }
             .overlay {
@@ -77,6 +80,14 @@ struct bookingHeaderView: View {
                     .offset(y: 270)
             }
         }
+    }
+    func extraDate(date: Date) -> [String] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM YYYY"
+        
+        let date = formatter.string(from: date)
+        
+        return date.components(separatedBy: " ")
     }
 }
 
@@ -136,21 +147,13 @@ struct NavigationHeader<Content: View>: View {
     }
 }
 
-struct BookingsInMonth: View {
-    var items: Int
-    var body: some View {
-        ScrollView (.vertical) {
-            VStack {
-                ForEach (0..<items) {_ in
-                    Bookings()
-                }
-            }
-        }
-        .frame(height: .infinity)
-    }
-}
-
 struct Bookings: View {
+    var sitter: String
+    var date: String
+    var Month: String
+    var timeStart: String
+    var timeEnd: String
+    
     var body: some View
     {
         HStack {
@@ -167,7 +170,7 @@ struct Bookings: View {
                     HStack {
                         VStack (spacing: 5) {
                             HStack (spacing: 8) {
-                                textView(text: "Emily T", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
+                                textView(text: sitter, font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                 Spacer()
                             }
                             
@@ -186,7 +189,7 @@ struct Bookings: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 10, height: 12)
                                     .foregroundColor(Color("yellowColor"))
-                                textView(text: "8:00 am - 9:00 am", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
+                                textView(text: "\(timeStart) - \(timeEnd)", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                 Spacer()
                             }
                         }
@@ -195,8 +198,8 @@ struct Bookings: View {
                         Spacer()
                         
                         VStack {
-                            textView(text: "MAY", font: "Poppins-Medium", fontSize: 16, color: "blackColor")
-                            textView(text: "26", font: "Poppins-SemiBOld", fontSize: 24, color: "blackColor")
+                            textView(text: Month, font: "Poppins-Medium", fontSize: 16, color: "blackColor")
+                            textView(text: date, font: "Poppins-SemiBOld", fontSize: 24, color: "blackColor")
                         }
                         .padding(.trailing, 16)
                     }

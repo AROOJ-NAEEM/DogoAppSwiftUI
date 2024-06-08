@@ -23,6 +23,7 @@ struct BookingScheduleView: View {
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var navigateToThankYouView = false
+    @State private var progress: Int = 0
     
     @ObservedObject var viewModel = BookingScheduleViewModel()
     
@@ -49,32 +50,42 @@ struct BookingScheduleView: View {
                         .shadow(radius: 5)
                 }
             }
-            VStack(spacing: 0) {
-                HStack {
-                    DateView(text: "Select the time")
-                    Spacer()
+            if progress >= 1 {
+                VStack(spacing: 0) {
+                    HStack {
+                        DateView(text: "Select the time")
+                        Spacer()
+                    }
+                    HStack(spacing: -20) {
+                        DropDownView(selection: $startTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
+                        
+                            .padding(.leading, -12)
+                        DropDownView(selection: $endTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
+                        
+                            .padding(.trailing, -12)
+                    }
                 }
-                HStack(spacing: -20) {
-                    DropDownView(selection: $startTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
-                    
-                    .padding(.leading, -12)
-                    DropDownView(selection: $endTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
-                    
-                    .padding(.trailing, -12)
-                }
+                .padding(.bottom, -30)
             }
-            .padding(.bottom, -30)
-            VStack(spacing: 0) {
-                HStack {
-                    DateView(text: "Select the dog sitter")
-                    Spacer()
+            if progress >= 2 {
+                VStack(spacing: 0) {
+                    HStack {
+                        DateView(text: "Select the dog sitter")
+                        Spacer()
+                    }
+                    HStack {
+                        DropDownView(selection: $sitterSelection, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, options: viewModel.dogSittersName)
+                            .padding(.horizontal, -14)
+                    }
                 }
-                HStack {
-                    DropDownView(selection: $sitterSelection, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, options: viewModel.dogSittersName)
-                        .padding(.horizontal, -14)
-                }
+                .padding(.bottom, -30)
             }
-            .padding(.bottom, -30)
+            
+            if progress < 2 {
+                Spacer()
+                    .frame(height: .infinity)
+            }
+            
             VStack {
                 NavigationLink(destination: ThankyouView()
                     .navigationBarBackButtonHidden(true)
@@ -85,11 +96,18 @@ struct BookingScheduleView: View {
                                .hidden()
                 
                 Button(action: {
-                    if saveBooking() {
-                        navigateToThankYouView = true
-                    } else {
-                        self.showAlert = true
-                        self.alertMessage = "Booking Data is Incomplete."
+                    if progress < 2 {
+                        progress += 1
+                    }
+                    else {
+                        viewModel.saveBooking(startTimeSelection: startTimeSelection, endTimeSelection: endTimeSelection, sitterSelection: sitterSelection, currentDate: currentDate) { Bool in
+                            if Bool {
+                                navigateToThankYouView = true
+                            } else {
+                                self.showAlert = true
+                                self.alertMessage = "Booking Data is Incomplete."
+                            }
+                        }
                     }
                 }) {
                     textView(text: "Next", font: "Poppins-Regular", fontSize: 24, color: "white")
@@ -108,32 +126,6 @@ struct BookingScheduleView: View {
         .task {
             viewModel.fetchData()
         }
-    }
-    func saveBooking()-> Bool {
-        guard let startTime = startTimeSelection,
-              let endTime = endTimeSelection,
-              let sitter = sitterSelection
-        else {
-            print("Booking data incomplete")
-            return false
-        }
-        
-        let bookingData: [String: Any] = [
-            "date": currentDate,
-            "startTime": startTime,
-            "endTime": endTime,
-            "sitter": sitter
-        ]
-        
-        AuthManager.db.collection("bookings").addDocument(data: bookingData) { error in
-            if let error = error {
-                print("Error adding document: \(error)")
-            } else {
-                print("Booking added successfully")
-            }
-        }
-        return true
-        
     }
     
     func getTimeArray() -> [String] {
