@@ -10,6 +10,10 @@ import Foundation
 class HomeViewModel: ObservableObject {
     @Published var dogSitters : [DogSitterModel] = []
     
+    init() {
+        fetchData()
+    }
+    
     func fetchData() {
         AuthManager.db
             .collection("dogsitters")

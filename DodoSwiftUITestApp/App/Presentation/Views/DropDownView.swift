@@ -58,11 +58,11 @@ struct DropDownView: View {
                                     }
                                 }) {
                                     Text(option)
-                                        .padding(.vertical, 10)
+                                        .padding(10)
                                         .frame(maxWidth: maxWidth, alignment: .leading)
-                                        .foregroundColor(.primary)
+                                        .foregroundColor(Color("textfieldColor1"))
                                 }
-                                .background(Color.gray.opacity(0.1))
+                                .background(Color.gray.opacity(0.2))
                             }
                         }
                         .cornerRadius(8)

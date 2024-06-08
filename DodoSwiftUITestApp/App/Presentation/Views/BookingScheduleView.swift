@@ -20,6 +20,9 @@ struct BookingScheduleView: View {
     @State var personIconName: String = "person.circle"
     @State var timePlaceholder: String = "10:00 am"
     @State var sitterPlaceholder: String = "Joana G"
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @State private var navigateToThankYouView = false
     
     @ObservedObject var viewModel = BookingScheduleViewModel()
     
@@ -55,7 +58,6 @@ struct BookingScheduleView: View {
                     DropDownView(selection: $startTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
                     
                     .padding(.leading, -12)
-//                    Spacer()
                     DropDownView(selection: $endTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
                     
                     .padding(.trailing, -12)
@@ -68,31 +70,41 @@ struct BookingScheduleView: View {
                     Spacer()
                 }
                 HStack {
-//                    DropDownPicker(selection: $sitterSelection, maxWidth: $maxWidthForName, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, options: viewModel.dogSittersName)
-//                        .zIndex(1)
                     DropDownView(selection: $sitterSelection, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, options: viewModel.dogSittersName)
                         .padding(.horizontal, -14)
                 }
             }
             .padding(.bottom, -30)
             VStack {
-                NavigationLink() {
+                NavigationLink(destination: ThankyouView()
+                    .navigationBarBackButtonHidden(true)
+                    .navigationBarHidden(true),
+                               isActive: $navigateToThankYouView) {
+                    EmptyView()
+                }
+                               .hidden()
+                
+                Button(action: {
                     if saveBooking() {
-                        ThankyouView()
-                            .navigationBarBackButtonHidden(true)
-                            .navigationBarHidden(true)
+                        navigateToThankYouView = true
+                    } else {
+                        self.showAlert = true
+                        self.alertMessage = "Booking Data is Incomplete."
                     }
-                    
-                } label: {
+                }) {
                     textView(text: "Next", font: "Poppins-Regular", fontSize: 24, color: "white")
                         .frame(width: 350, height: 50)
                         .background(Color("buttonColor"))
                         .cornerRadius(8)
                 }
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Unable to Book"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                }
             }
-            Spacer()
-        }
+                Spacer()
+            }
         .padding(.horizontal, 24)
+        .background(Color("white"))
         .task {
             viewModel.fetchData()
         }

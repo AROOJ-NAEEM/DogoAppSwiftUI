@@ -13,15 +13,29 @@ struct MainTabbedView: View {
     
     var body: some View {
         ZStack{
-            if selectedSideMenuTab == 0 {
-                HomeView(presentSideMenu: $presentSideMenu)
-                                    .tag(0)
+            VStack {
+                if selectedSideMenuTab == 0 {
+                    HomeView(presentSideMenu: $presentSideMenu)
+                    .tag(0)            }
+                else if selectedSideMenuTab == 1 || selectedSideMenuTab == 2 || selectedSideMenuTab == 3 {
+                    BookingView(presentSideMenu: $presentSideMenu)
+                        .tag(1)
+                }
             }
-            else if selectedSideMenuTab == 1 || selectedSideMenuTab == 2 || selectedSideMenuTab == 3 {
-                BookingView(presentSideMenu: $presentSideMenu)
-                                                .tag(1)
+            .zIndex(0)
+            if presentSideMenu {
+                VStack {
+                    Spacer()
+                    SideMenuMainView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu)
+                    Spacer()
+                }
+                .background(Color.black.opacity(0.3))
+                .edgesIgnoringSafeArea(.all)
+                .onTapGesture {
+                    presentSideMenu.toggle()
+                }
+                .zIndex(1)
             }
-            SideMenu(isShowing: $presentSideMenu, content: AnyView(SideMenuMainView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu)))
         }
     }
 }

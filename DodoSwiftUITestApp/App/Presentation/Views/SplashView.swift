@@ -17,6 +17,7 @@ struct SplashView: View {
     @State private var isSecured: Bool = true
     @State private var showAlert = false
     @State private var alertMessage = ""
+    @State private var isSigningIn = false
     
     var body: some View {
         NavigationView {
@@ -27,7 +28,7 @@ struct SplashView: View {
                 .shadow(color: Color("shadowColor"), radius: 30, x: 0, y: 0)
                 .overlay() {
                     if showLoginView {
-                        LoginViewContent("Enter your password", password: $password, email: $email, isSecured: $isSecured, showAlert: $showAlert, alertMessage: $alertMessage, showHomeView: $showHomeView).body
+                        LoginViewContent("Enter your password", password: $password, email: $email, isSecured: $isSecured, showAlert: $showAlert, alertMessage: $alertMessage, showHomeView: $showHomeView, isSigningIn: $isSigningIn).body
                     } else {
                         SplashViewContent().body
                     }
@@ -106,10 +107,11 @@ struct LoginViewContent: View, ContentViewProtocol {
     @Binding private var isSecured: Bool
     @Binding private var showAlert: Bool
     @Binding private var alertMessage: String
+    @Binding private var isSigningIn: Bool
     
     private var passwordTitle: String = "Enter your password"
     
-    init(_ passwordTitle: String, password: Binding<String>, email: Binding<String>, isSecured: Binding<Bool>, showAlert: Binding<Bool>, alertMessage: Binding<String>, showHomeView: Binding<Bool> ) {
+    init(_ passwordTitle: String, password: Binding<String>, email: Binding<String>, isSecured: Binding<Bool>, showAlert: Binding<Bool>, alertMessage: Binding<String>, showHomeView: Binding<Bool>, isSigningIn: Binding<Bool>  ) {
         self.passwordTitle = passwordTitle
         self._password = password
         self._email = email
@@ -117,6 +119,7 @@ struct LoginViewContent: View, ContentViewProtocol {
         self._showAlert = showAlert
         self._alertMessage = alertMessage
         self._showHomeView = showHomeView
+        self._isSigningIn = isSigningIn
     }
     
     var body: some View {
@@ -235,6 +238,7 @@ struct LoginViewContent: View, ContentViewProtocol {
             .padding(.vertical, 5)
             
             Button(action: {
+                self.isSigningIn = true
                 LoginViewModel().SignIn(email: email, password: password) { showHomeView, error in
                     if showHomeView {
                         let emailComponents = email.components(separatedBy: "@")
@@ -253,15 +257,22 @@ struct LoginViewContent: View, ContentViewProtocol {
                             self.alertMessage = error.localizedDescription
                         }
                     }
+                    self.isSigningIn = false
                 }
             }) {
-                Text("Sign In")
-                    .font(Font.custom("Poppins-Medium", size: 20))
-                    .frame(width: 358, height: 50)
-                    .background(Color("buttonColor"))
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+                if isSigningIn {
+                    ProgressView()
+                        .frame(width: 20, height: 20)
+                } else {
+                    Text("Sign In")
+                }
             }
+            .font(Font.custom("Poppins-Medium", size: 20))
+            .frame(width: 358, height: 50)
+            .background(Color("buttonColor"))
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .disabled(isSigningIn)
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
@@ -293,13 +304,16 @@ struct LoginViewContent: View, ContentViewProtocol {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .frame(height: 46.67)
+                    .disabled(isSigningIn)
                     
                     Button(action: {
                         // action
+                        self.isSigningIn = true
                         Task {
                             do {
                                 try await AuthManager.shared.googleOauth { result in
                                     showHomeView = result
+                                    self.isSigningIn = false
                                 }
                             } catch let e {
                                 print(e)
@@ -322,22 +336,28 @@ struct LoginViewContent: View, ContentViewProtocol {
                     }
                     .buttonStyle(PlainButtonStyle())
                     .frame(height: 46.67)
+                    .disabled(isSigningIn)
+                    
                     Spacer()
-                    SignInWithAppleButton(.continue) { request in
+                    
+                    SignInWithAppleButton(.signIn) { request in
                         // authorization request for an Apple ID
                     } onCompletion: { result in
+                        self.isSigningIn = true
                         // completion handler that is called when the sign-in completes
                         switch result {
                         case .success(let authorization):
                             LoginViewModel().appleLogin(authorization: authorization) { showHomeView in
                                 DispatchQueue.main.async {
                                     self.showHomeView = showHomeView
+                                    self.isSigningIn = false
                                 }
                             }
                         case .failure(let error):
                             print("Could not authenticate: \(error.localizedDescription)")
                         }
                     }
+                    .disabled(isSigningIn)
                     .signInWithAppleButtonStyle(.whiteOutline)
                     .buttonStyle(PlainButtonStyle())
                     .frame(height: 46.67)
