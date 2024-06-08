@@ -73,6 +73,7 @@ struct bookingHeaderView: View {
                         }
                     }
                 }
+                .padding(.bottom, 77)
                 Spacer()
             }
             .overlay {

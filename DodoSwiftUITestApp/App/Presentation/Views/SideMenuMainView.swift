@@ -72,7 +72,8 @@ struct SideMenuMainView: View {
             }
             Spacer()
             VStack {
-                textView(text: "Coleen H", font: "Montserrat-Regular", fontSize: 14, color: "blackColor")
+                let displayName = AuthManager.auth.currentUser?.displayName ?? ""
+                textView(text: displayName.components(separatedBy: " ").first ?? "", font: "Montserrat-Regular", fontSize: 14, color: "blackColor")
                 Button(action: {}, label: {
                     textView(text: "Edit profile", font: "Poppins-Medium", fontSize: 14, color: "darkBlackColor")
                 })
