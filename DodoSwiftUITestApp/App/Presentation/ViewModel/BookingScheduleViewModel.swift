@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class BookingScheduleViewModel: ObservableObject {
     
@@ -13,55 +14,149 @@ class BookingScheduleViewModel: ObservableObject {
     @Published var startTime: String = ""
     
     func fetchData() {
+        LogService.log("Fetch: Start")
         AuthManager.db
             .collection("dogsitters")
             .getDocuments { (snapshot, error) in
                 guard let snapshot = snapshot, error == nil else {
-                    //handle error
                     return
                 }
                 self.dogSittersName = snapshot.documents.compactMap { documentSnapshot -> String? in
                     let documentData = documentSnapshot.data()
                     if let name = documentData["name"] as? String {
+                        LogService.log("Fetch: Successfull")
                         return name
                     } else {
+                        LogService.log("Fetch: Unsuccessfull")
                         return nil
                     }
                 }
             }
     }
     
-    func saveBooking(startTimeSelection: String?, endTimeSelection: String?, sitterSelection: String?, currentDate: Date, complete: @escaping(Bool) -> Void) {
+    func saveBooking(startTimeSelection: String?, endTimeSelection: String?, sitterSelection: String?, currentDate: Date, complete: @escaping(Bool, Error?) -> Void) {
         guard let startTime = startTimeSelection,
               let endTime = endTimeSelection,
               let sitter = sitterSelection
         else {
-            print("Booking data incomplete")
+            LogService.log("Booking data incomplete")
+            complete(false, "Booking data incomplete")
             return
         }
         
         guard let currentUserUID = AuthManager.auth.currentUser?.uid else {
-            print("User is not authenticated")
+            LogService.log("User is not authenticated")
             return
         }
         
-        let bookingData: [String: Any] = [
-            "date": currentDate,
-            "startTime": startTime,
-            "endTime": endTime,
-            "sitter": sitter,
-            "userId" : currentUserUID
-        ]
+        AuthManager.db.collection("bookings")
+            .whereField("userId", isEqualTo: currentUserUID)
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    LogService.log("Error querying bookings: \(error)")
+                    complete(false, error)
+                    return
+                }
+                
+                if let documents = querySnapshot?.documents {
+                    let overlappingBookings = documents.filter { document in
+                        let bookingStartTime = document["startTime"] as? String ?? ""
+                        let bookingEndTime = document["endTime"] as? String ?? ""
+                        return (bookingStartTime < endTime) && (bookingEndTime > startTime)
+                    }
+                    
+                    if !overlappingBookings.isEmpty {
+                        LogService.log("This slot is already Booked! Choose Another slot!")
+                        complete(false, "This slot is already Booked! Choose Another slot!")
+                        return
+                    }
+                }
+                
+                let bookingData: [String: Any] = [
+                    "date": currentDate,
+                    "startTime": startTime,
+                    "endTime": endTime,
+                    "sitter": sitter,
+                    "userId" : currentUserUID
+                ]
+                
+                AuthManager.db.collection("bookings").addDocument(data: bookingData) { error in
+                    if let error = error {
+                        LogService.log("Error adding document: \(error)")
+                        complete(false, error)
+                    } else {
+                        LogService.log("Booking added successfully")
+                        complete(true, nil)
+                    }
+                }
+            }
+    }
+    
+    func scheduleNotification(startTimeSelection: String?) {
+        let content = UNMutableNotificationContent()
+        content.title = "Dogo"
+        content.subtitle = "Your dog sitter is coming!"
+        content.sound = UNNotificationSound.default
         
-        AuthManager.db.collection("bookings").addDocument(data: bookingData) { error in
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        guard let startTimeSelection = startTimeSelection,
+              let currentDate = formatter.date(from: formatter.string(from: Date())) else {
+            LogService.log("Error: Invalid start time selection or current date")
+            return
+        }
+        
+        guard let selectedTime = formatter.date(from: "2000-01-01 \(startTimeSelection)") else {
+            LogService.log("Error: Unable to parse selected time")
+            return
+        }
+        
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
+        let timeComponents = calendar.dateComponents([.hour, .minute], from: selectedTime)
+        
+        guard let selectedHour = timeComponents.hour, let selectedMinute = timeComponents.minute else {
+            LogService.log("Error: Unable to extract hour and minute from selected time")
+            return
+        }
+        
+        let notificationHour = selectedHour - 1
+        var notificationMinute = selectedMinute + 45
+        var notificationDay = dateComponents.day ?? 0
+        
+        if notificationMinute < 0 {
+            notificationDay -= 1
+            notificationDay = max(notificationDay, 1)
+            notificationMinute += 60
+        }
+        
+        let triggerDateComponents = DateComponents(year: dateComponents.year, month: dateComponents.month, day: notificationDay, hour: notificationHour, minute: notificationMinute)
+        
+        guard let triggerDate = calendar.date(from: triggerDateComponents) else {
+            LogService.log("Error: Unable to create trigger date")
+            return
+        }
+        
+        if triggerDate < currentDate {
+            LogService.log("Error: Trigger date is in the past")
+            return
+        }
+        
+        // Set the notification trigger
+        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+        
+        // Choose a random identifier
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        // Add our notification request
+        UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
-                print("Error adding document: \(error)")
+                LogService.log("Error scheduling notification: \(error.localizedDescription)")
             } else {
-                print("Booking added successfully")
+                LogService.log("Notification scheduled successfully")
             }
         }
-        complete(true)
-        
     }
     
 }

@@ -16,17 +16,15 @@ struct CustomDatePicker: View {
         
         //days
         let days : [String] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
-        HStack(spacing: 24) {
-            ForEach(days, id: \.self) { day in
-                textView(text: day, font: "Poppins-Medium", fontSize: 12, color: "blackColor")
-            }
-        }
         
         VStack(spacing: 16) {
             //dates
             //LazyGrid
             let columns = Array(repeating: GridItem(.flexible()), count: 7)
             LazyVGrid(columns: columns, spacing: 15, content: {
+                ForEach(days, id: \.self) { day in
+                    textView(text: day, font: "Poppins-Medium", fontSize: 12, color: "blackColor")
+                }
                 ForEach(extractDate()) { value in
                     cardView(value: value)
                         .background(

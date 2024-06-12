@@ -24,6 +24,7 @@ struct ThankyouView: View {
             }
         }
         .padding(.horizontal, 24)
+        .padding(.top, 10)
         .background(Color("white"))
     }
 }

@@ -25,6 +25,7 @@ struct BookingView: View {
                     .edgesIgnoringSafeArea(.all)
                     bookingHeaderView(presentSideMenu: $presentSideMenu)
                         .padding(.horizontal, 24)
+                        .padding(.top, 10)
                         .environmentObject(viewModel)
                 }
                 .task {
@@ -53,7 +54,7 @@ struct bookingHeaderView: View {
     @Binding var presentSideMenu: Bool
     @EnvironmentObject var viewModel: BookingViewModel
     var body: some View {
-        VStack(spacing: 18){
+        VStack(spacing: 0){
             NavigationHeader(viewName: MainTabbedView())
             
             ScrollView (.vertical, showsIndicators: false) {

@@ -14,4 +14,5 @@ struct BookingModel {
     var startTime: String
     var endTime: String
     var sitter: String
+    var userId: String
 }

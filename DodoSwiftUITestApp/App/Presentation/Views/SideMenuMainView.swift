@@ -52,7 +52,8 @@ struct SideMenuMainView: View {
             
             Spacer()
         }
-        .background(Color("white"))        }
+        .background(.clear)
+    }
     
     func ProfileImageView() -> some View{
         HStack {

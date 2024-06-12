@@ -24,7 +24,6 @@ struct HomeView: View {
             .edgesIgnoringSafeArea(.all)
             
             VStack (spacing: 23){
-                Spacer()
                 HStack (spacing: 16){
                     Button{
                         presentSideMenu.toggle()
@@ -47,29 +46,28 @@ struct HomeView: View {
                         .frame(width: 24, height: 24)
                         .foregroundColor(Color("menuIconColor"))
                 }
+                .padding(.horizontal, 16)
                 
                 HStack(alignment: .top, spacing: 8) {
                     Image(systemName: "magnifyingglass.circle.fill")
                         .resizable()
                         .frame(width: 32, height: 32)
                         .foregroundColor(Color("greyIconCOlor"))
-                    
-                    TextField("Search by location, name ...", text: $search)
-                        .overlay {
-                            if search.isEmpty {
-                                HStack {
-                                    Text("Search by location, name ...").foregroundColor(Color("greyIconCOlor"))
-                                    Spacer()
-                                }
-                            }
+                    ZStack(alignment: .leading) {
+                        if search.isEmpty {
+                            Text("Search by location, name ...")
+                                .foregroundColor(Color("greyIconCOlor"))
                         }
-                        .foregroundColor(Color("blackColor"))
+                        TextField("", text: $search)
+                            .foregroundColor(Color("blackColor"))
+                    }
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 8)
                 .background(Color("textfieldColor"))
                 .cornerRadius(8)
                 .shadow(color: Color("textfieldColor"), radius: 5, x: 0, y: 0)
+                .padding(.horizontal, 16)
                 
                 HStack {
                     Rectangle()
@@ -84,7 +82,7 @@ struct HomeView: View {
                                         .frame(width: 157, height: 150)
                                         .cornerRadius(8)
                                 }
-                                .offset(y: -8)
+                                .offset(y: -10)
                                 Spacer()
                                 VStack(alignment: .trailing) {
                                     VStack(alignment: .trailing)  {
@@ -100,6 +98,7 @@ struct HomeView: View {
                             .padding(.trailing)
                         }
                 }
+                .padding(.horizontal, 16)
                 
                 VStack (spacing: 16) {
                     HStack {
@@ -161,6 +160,7 @@ struct HomeView: View {
                             }
                     }
                 }
+                .padding(.horizontal, 16)
                 
                 VStack (spacing: 10) {
                     HStack {
@@ -173,56 +173,62 @@ struct HomeView: View {
                         }
                         
                     }
+                    .padding(.horizontal, 16)
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 20) {
-                            ForEach(viewModel.dogSitters, id: \.id) {dogSitter in
-                                VStack (alignment: .leading) {
-                                    ZStack {
-                                        WebImage(url: URL(string: dogSitter.profile))
-                                            .resizable()
-                                            .indicator(.activity)
-                                            .frame(width: 120, height: 120)
-                                            .cornerRadius(8)
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .frame(width: .infinity, height: 200)
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 20) {
+                                ForEach(viewModel.dogSitters, id: \.id) {dogSitter in
+                                    VStack (alignment: .leading) {
                                         ZStack {
-                                            textView(text: "  $\(dogSitter.charges)/hour  ", font: "Poppins-Medium", fontSize: 12, color: "white")
-                                                .background(Color("buttonColor"))
-                                                .cornerRadius(50)
-                                                .offset(x: 30, y: -60)
+                                            WebImage(url: URL(string: dogSitter.profile))
+                                                .resizable()
+                                                .indicator(.activity)
+                                                .frame(width: 120, height: 120)
+                                                .cornerRadius(8)
+                                            ZStack {
+                                                textView(text: "  $\(dogSitter.charges)/hour  ", font: "Poppins-Medium", fontSize: 12, color: "white")
+                                                    .background(Color("buttonColor"))
+                                                    .cornerRadius(50)
+                                                    .offset(x: 30, y: -60)
+                                            }
                                         }
+                                        textView(text: dogSitter.name, font: "Poppins-Medium", fontSize: 16, color: "blackColor")
+                                        HStack (spacing: 0) {
+                                            ForEach(0..<dogSitter.rating) {_ in
+                                                Image(systemName: "star.fill")
+                                                    .foregroundColor(Color("ratingColor"))
+                                                    .overlay {
+                                                        Image(systemName: "star")
+                                                            .foregroundColor(Color("menuShadowColor"))
+                                                    }
+                                            }
+                                            ForEach(0..<(5 - dogSitter.rating)) {_ in
+                                                Image(systemName: "star")
+                                                    .foregroundColor(Color("ratingColor"))
+                                                    .overlay {
+                                                        Image(systemName: "star")
+                                                            .foregroundColor(Color("menuShadowColor"))
+                                                    }
+                                            }
+                                            
+                                        }
+                                        textView(text: "\(dogSitter.tours) tours", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                     }
-                                    textView(text: dogSitter.name, font: "Poppins-Medium", fontSize: 16, color: "blackColor")
-                                    HStack (spacing: 0) {
-                                        ForEach(0..<dogSitter.rating) {_ in
-                                            Image(systemName: "star.fill")
-                                                .foregroundColor(Color("ratingColor"))
-                                                .overlay {
-                                                    Image(systemName: "star")
-                                                        .foregroundColor(Color("menuShadowColor"))
-                                                }
-                                        }
-                                        ForEach(0..<(5 - dogSitter.rating)) {_ in
-                                            Image(systemName: "star")
-                                                .foregroundColor(Color("ratingColor"))
-                                                .overlay {
-                                                    Image(systemName: "star")
-                                                        .foregroundColor(Color("menuShadowColor"))
-                                                }
-                                        }
-
-                                    }
-                                    textView(text: "\(dogSitter.tours) tours", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                 }
                             }
+                            .padding(.top, 10)
                         }
-                        .padding(.top, 10)
+                        .task { viewModel.fetchData() }
+                            .padding(.leading, 16)
                     }
-                    .task { viewModel.fetchData() }
                 }
                 Spacer()
             }
-            .padding(.horizontal, 16)
-            Spacer()
+            .padding(.top, 10)
         }
     }
 }

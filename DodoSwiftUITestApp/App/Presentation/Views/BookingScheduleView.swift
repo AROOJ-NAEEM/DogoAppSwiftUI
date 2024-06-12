@@ -18,7 +18,7 @@ struct BookingScheduleView: View {
     @State var maxWidthForName: CGFloat = .infinity
     @State var clockIconName: String = "clock.circle"
     @State var personIconName: String = "person.circle"
-    @State var timePlaceholder: String = "10:00 am"
+    @State var timePlaceholder: String = "10:00"
     @State var sitterPlaceholder: String = "Joana G"
     @State private var showAlert = false
     @State private var alertMessage = ""
@@ -66,6 +66,23 @@ struct BookingScheduleView: View {
                     }
                 }
                 .padding(.bottom, -30)
+            } else {
+                VStack(spacing: 0) {
+                    HStack {
+                        DateView(text: "Select the time")
+                        Spacer()
+                    }
+                    HStack(spacing: -20) {
+                        DropDownView(selection: $startTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
+                        
+                            .padding(.leading, -12)
+                        DropDownView(selection: $endTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
+                        
+                            .padding(.trailing, -12)
+                    }
+                }
+                .padding(.bottom, -30)
+                .hidden()
             }
             if progress >= 2 {
                 VStack(spacing: 0) {
@@ -79,11 +96,19 @@ struct BookingScheduleView: View {
                     }
                 }
                 .padding(.bottom, -30)
-            }
-            
-            if progress < 2 {
-                Spacer()
-                    .frame(height: .infinity)
+            } else {
+                VStack(spacing: 0) {
+                    HStack {
+                        DateView(text: "Select the dog sitter")
+                        Spacer()
+                    }
+                    HStack {
+                        DropDownView(selection: $sitterSelection, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, options: viewModel.dogSittersName)
+                            .padding(.horizontal, -14)
+                    }
+                }
+                .padding(.bottom, -30)
+                .hidden()
             }
             
             VStack {
@@ -100,12 +125,14 @@ struct BookingScheduleView: View {
                         progress += 1
                     }
                     else {
-                        viewModel.saveBooking(startTimeSelection: startTimeSelection, endTimeSelection: endTimeSelection, sitterSelection: sitterSelection, currentDate: currentDate) { Bool in
-                            if Bool {
-                                navigateToThankYouView = true
-                            } else {
+                        viewModel.saveBooking(startTimeSelection: startTimeSelection, endTimeSelection: endTimeSelection, sitterSelection: sitterSelection, currentDate: currentDate) { Bool, error in
+                            if let error = error {
                                 self.showAlert = true
-                                self.alertMessage = "Booking Data is Incomplete."
+                                self.alertMessage = "\(error)"
+                            } else {
+                                print(currentDate)
+                                viewModel.scheduleNotification(startTimeSelection: startTimeSelection)
+                                navigateToThankYouView = true
                             }
                         }
                     }
@@ -121,6 +148,7 @@ struct BookingScheduleView: View {
             }
                 Spacer()
             }
+        .padding(.top, 10)
         .padding(.horizontal, 24)
         .background(Color("white"))
         .task {

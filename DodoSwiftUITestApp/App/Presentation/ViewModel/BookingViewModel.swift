@@ -16,7 +16,6 @@ class BookingViewModel: ObservableObject {
         var groupedDict: [String: [BookingModel]] = [:]
         
         for booking in self.booking {
-            // Extract month and year
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMMM yyyy"
             let monthYearString = dateFormatter.string(from: booking.date.dateValue())
@@ -33,28 +32,34 @@ class BookingViewModel: ObservableObject {
     }
     func fetchBookingData() {
         guard let currentUserUID = AuthManager.auth.currentUser?.uid else {
+            LogService.log("User is not authenticated")
             print("User is not authenticated")
             return
         }
-        
+        LogService.log("Fetch booking start")
         AuthManager.db
             .collection("bookings")
             .whereField("userId", isEqualTo: currentUserUID)
             .getDocuments { (snapshot, error) in
                 guard let snapshot = snapshot, error == nil else {
                     //handle error
+                    LogService.log("Error getting booking document")
                     return
                 }
                 print("Number of documents: \(snapshot.documents.count )")
+                LogService.log("Number of booking documents: \(snapshot.documents.count )")
                 self.booking = snapshot.documents.compactMap { documentSnapshot -> BookingModel? in
                     let documentData = documentSnapshot.data()
                     if let date = documentData["date"] as? Timestamp,
                        let startTime = documentData["startTime"] as? String,
                        let endTime = documentData["endTime"] as? String,
-                       let sitter = documentData["sitter"] as? String
+                       let sitter = documentData["sitter"] as? String,
+                       let userId = documentData["userId"] as? String
                     {
-                        return BookingModel(date: date, startTime: startTime, endTime: endTime, sitter: sitter)
+                        LogService.log("Booing fetch Successfull")
+                        return BookingModel(date: date, startTime: startTime, endTime: endTime, sitter: sitter, userId: userId)
                     } else {
+                        LogService.log("Booing fetch Unsuccessfull")
                         return nil
                     }
                 }

@@ -6,10 +6,12 @@
       "scale" : "1x"
     },
     {
+      "filename" : "Social icons.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Social icons (1).png",
       "idiom" : "universal",
       "scale" : "3x"
     }

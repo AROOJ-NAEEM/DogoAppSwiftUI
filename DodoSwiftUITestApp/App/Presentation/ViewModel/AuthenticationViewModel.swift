@@ -16,6 +16,7 @@ class AuthenticationViewModel: ObservableObject {
     }
     
     func checkAuthentication() {
+        LogService.log("Checking user authentication")
         self.isUserAuthenticated = AuthManager.auth.currentUser != nil
     }
 }

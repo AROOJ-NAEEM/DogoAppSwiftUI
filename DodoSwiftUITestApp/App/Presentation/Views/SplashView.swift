@@ -156,16 +156,14 @@ struct LoginViewContent: View, ContentViewProtocol {
                     .frame(width: 32, height: 32)
                     .foregroundColor(Color("greyIconCOlor"))
                 
-                TextField("Enter your e-mail", text: $email)
-                    .overlay {
-                        if email.isEmpty {
-                            HStack {
-                                Text("Enter your e-mail").foregroundColor(Color("greyIconCOlor"))
-                                Spacer()
-                            }
-                        }
+                ZStack(alignment: .leading) {
+                    if email.isEmpty {
+                        Text("Enter your e-mail")
+                            .foregroundColor(Color("greyIconCOlor"))
                     }
-                    .foregroundColor(Color("blackColor"))
+                    TextField("", text: $email)
+                        .foregroundColor(Color("blackColor"))
+                }
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
@@ -182,27 +180,24 @@ struct LoginViewContent: View, ContentViewProtocol {
                     .foregroundColor(Color("greyIconCOlor"))
                 Group {
                     if isSecured {
-                        SecureField(passwordTitle, text: $password)
-                            .overlay {
-                                if password.isEmpty {
-                                    HStack {
-                                        Text(passwordTitle).foregroundColor(Color("greyIconCOlor"))
-                                        Spacer()
-                                    }
-                                }
+                        ZStack(alignment: .leading) {
+                            if password.isEmpty {
+                                Text(passwordTitle)
+                                    .foregroundColor(Color("greyIconCOlor"))
                             }
-                            .foregroundColor(Color("blackColor"))
+                            SecureField("", text: $password)
+                                .foregroundColor(Color("blackColor"))
+                        }
                     } else {
-                        TextField(passwordTitle, text: $password)
-                            .overlay {
-                                if password.isEmpty {
-                                    HStack {
-                                        Text(passwordTitle).foregroundColor(Color("greyIconCOlor"))
-                                        Spacer()
-                                    }
-                                }
+                        ZStack(alignment: .leading) {
+                            if password.isEmpty {
+                                Text(passwordTitle)
+                                    .foregroundColor(Color("greyIconCOlor"))
                             }
-                            .foregroundColor(Color("blackColor"))
+                            TextField("", text: $password)
+                                .foregroundColor(Color("blackColor"))
+                        }
+                        
                     }
                 }
                 Button(action: {
@@ -249,6 +244,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                                 print("Error adding document: \(error.localizedDescription)")
                             } else {
                                 self.showHomeView = showHomeView
+                                self.triggerNotifications()
                             }
                         }
                     } else {
@@ -313,6 +309,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                             do {
                                 try await AuthManager.shared.googleOauth { result in
                                     showHomeView = result
+                                    self.triggerNotifications()
                                     self.isSigningIn = false
                                 }
                             } catch let e {
@@ -350,6 +347,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                             LoginViewModel().appleLogin(authorization: authorization) { showHomeView in
                                 DispatchQueue.main.async {
                                     self.showHomeView = showHomeView
+                                    self.triggerNotifications()
                                     self.isSigningIn = false
                                 }
                             }
@@ -370,5 +368,15 @@ struct LoginViewContent: View, ContentViewProtocol {
         }
         NavigationLink("", destination:  MainTabbedView().navigationBarBackButtonHidden(true), isActive: $showHomeView)
             .navigationBarTitle("")
+    }
+    
+    func triggerNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("All set!")
+            } else if let error {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
