@@ -149,7 +149,7 @@ class BookingScheduleViewModel: ObservableObject {
             notificationMinute += 60
         }
         
-        let triggerDateComponents = DateComponents(year: dateComponents.year, month: dateComponents.month, day: notificationDay, hour: notificationHour, minute: notificationMinute)
+        let triggerDateComponents = DateComponents(year: notificationYear, month: notificationMonth, day: notificationDay, hour: notificationHour, minute: notificationMinute)
         
         guard let triggerDate = calendar.date(from: triggerDateComponents) else {
             LogService.log("Error: Unable to create trigger date")

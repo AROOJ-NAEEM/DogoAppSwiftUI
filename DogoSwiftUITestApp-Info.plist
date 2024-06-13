@@ -32,6 +32,11 @@
 		<string>fetch</string>
 		<string>processing</string>
 		<string>remote-notification</string>
+		<string>audio</string>
+	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.devsinc.DodoSwiftUITestApp</string>
 	</array>
 </dict>
 </plist>
