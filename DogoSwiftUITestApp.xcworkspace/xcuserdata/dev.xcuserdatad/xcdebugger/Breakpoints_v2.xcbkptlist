@@ -737,5 +737,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B0567AEF-0AD3-4FF6-A137-40206F8D7BE8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DodoSwiftUITestApp/App/Presentation/Views/BookingScheduleView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "getTimeArray()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "885DB531-035D-4677-9ACF-04FBBDB9C0A9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DodoSwiftUITestApp/App/Presentation/Views/BookingScheduleView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "getTimeArray()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "885DB531-035D-4677-9ACF-04FBBDB9C0A9 - c6235e71d4fcfec5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DogoSwiftUITestApp.BookingScheduleView.getTimeArray() -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DogoSwiftUITestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dev/Desktop/DodoSwiftUIApp/DodoSwiftUITestApp/App/Presentation/Views/BookingScheduleView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "1749">
+               </Location>
+               <Location
+                  uuid = "885DB531-035D-4677-9ACF-04FBBDB9C0A9 - c6235e71d4fcfec5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DogoSwiftUITestApp.BookingScheduleView.getTimeArray() -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DogoSwiftUITestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dev/Desktop/DodoSwiftUIApp/DodoSwiftUITestApp/App/Presentation/Views/BookingScheduleView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "198"
+                  endingLineNumber = "198"
+                  offsetFromSymbolStart = "1744">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -181,8 +181,8 @@ struct BookingScheduleView: View {
         }
     }
     func getTimeArray() -> [String] {
-        let lastTime: Double = 22
-        var currentTime: Double = 5
+        let lastTime: Double = 23
+        var currentTime: Double = 0
         let incrementMinutes: Double = 60
         var timeArray: [String] = []
         while currentTime <= lastTime {
