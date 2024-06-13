@@ -48,7 +48,6 @@
 		D70563DC2C049D7300955B77 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D70563CA2C049D7300955B77 /* Montserrat-Bold.ttf */; };
 		D70563DD2C049D7300955B77 /* Montserrat-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D70563CB2C049D7300955B77 /* Montserrat-ExtraLight.ttf */; };
 		D70563DF2C04B2C700955B77 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563DE2C04B2C700955B77 /* HomeView.swift */; };
-		D70563E12C04E18E00955B77 /* SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563E02C04E18E00955B77 /* SideMenu.swift */; };
 		D70563E32C04E1BE00955B77 /* SideMenuRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D70563E22C04E1BE00955B77 /* SideMenuRowType.swift */; };
 		D70563F12C04EF3000955B77 /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = D70563ED2C04EF3000955B77 /* notification.png */; };
 		D70563F22C04EF3000955B77 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = D70563EE2C04EF3000955B77 /* house.png */; };
@@ -75,7 +74,6 @@
 		D71CA4802C160A5200353C00 /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71CA47F2C160A5200353C00 /* LoginViewModelTests.swift */; };
 		D7A62A112C0998E8005D200B /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A102C0998E8005D200B /* CustomDatePicker.swift */; };
 		D7A62A132C099F04005D200B /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A122C099F04005D200B /* DateValue.swift */; };
-		D7A62A152C09F018005D200B /* DropDownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A142C09F018005D200B /* DropDownPicker.swift */; };
 		D7A62A172C09F7D7005D200B /* DropDownPickerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A62A162C09F7D7005D200B /* DropDownPickerState.swift */; };
 		D7A62A192C0A0254005D200B /* Verdana.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7A62A182C0A0254005D200B /* Verdana.ttf */; };
 		D7A62A1B2C0A027F005D200B /* Verdana-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7A62A1A2C0A027F005D200B /* Verdana-Regular.ttf */; };
@@ -140,7 +138,6 @@
 		D70563CA2C049D7300955B77 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		D70563CB2C049D7300955B77 /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
 		D70563DE2C04B2C700955B77 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		D70563E02C04E18E00955B77 /* SideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenu.swift; sourceTree = "<group>"; };
 		D70563E22C04E1BE00955B77 /* SideMenuRowType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuRowType.swift; sourceTree = "<group>"; };
 		D70563ED2C04EF3000955B77 /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
 		D70563EE2C04EF3000955B77 /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
@@ -169,7 +166,6 @@
 		D71CA47F2C160A5200353C00 /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		D7A62A102C0998E8005D200B /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		D7A62A122C099F04005D200B /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
-		D7A62A142C09F018005D200B /* DropDownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPicker.swift; sourceTree = "<group>"; };
 		D7A62A162C09F7D7005D200B /* DropDownPickerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPickerState.swift; sourceTree = "<group>"; };
 		D7A62A182C0A0254005D200B /* Verdana.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Verdana.ttf; sourceTree = "<group>"; };
 		D7A62A1A2C0A027F005D200B /* Verdana-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Verdana-Regular.ttf"; sourceTree = "<group>"; };
@@ -314,11 +310,9 @@
 				D70563DE2C04B2C700955B77 /* HomeView.swift */,
 				D70563F92C05EF8800955B77 /* BookingView.swift */,
 				D70563F52C05DA9800955B77 /* SideMenuMainView.swift */,
-				D70563E02C04E18E00955B77 /* SideMenu.swift */,
 				D70563F72C05DADB00955B77 /* MainTabbedView.swift */,
 				D70564042C08A29600955B77 /* BookingScheduleView.swift */,
 				D7A62A102C0998E8005D200B /* CustomDatePicker.swift */,
-				D7A62A142C09F018005D200B /* DropDownPicker.swift */,
 				D71A49CD2C0A25780003AAA8 /* ThankyouView.swift */,
 				D71CA46A2C11FD8E00353C00 /* DropDownView.swift */,
 			);
@@ -652,13 +646,11 @@
 				D70563DF2C04B2C700955B77 /* HomeView.swift in Sources */,
 				D71A49D02C0DFEED0003AAA8 /* AppDelegate.swift in Sources */,
 				D71CA4712C16083D00353C00 /* LogService.swift in Sources */,
-				D70563E12C04E18E00955B77 /* SideMenu.swift in Sources */,
 				D7A62A172C09F7D7005D200B /* DropDownPickerState.swift in Sources */,
 				D71CA4672C109ACA00353C00 /* BookingScheduleViewModel.swift in Sources */,
 				D7BA8F2B2BFF962000724F3B /* DodoSwiftUITestAppApp.swift in Sources */,
 				D71CA4632C0F975300353C00 /* DogSitterModel.swift in Sources */,
 				D7A62A132C099F04005D200B /* DateValue.swift in Sources */,
-				D7A62A152C09F018005D200B /* DropDownPicker.swift in Sources */,
 				D70563952C00B91100955B77 /* SplashView.swift in Sources */,
 				D70563F82C05DADB00955B77 /* MainTabbedView.swift in Sources */,
 				D71CA46D2C14825100353C00 /* BookingViewModel.swift in Sources */,

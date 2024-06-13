@@ -7,6 +7,7 @@
 
 import Foundation
 import UserNotifications
+import FirebaseFirestoreInternal
 
 class BookingScheduleViewModel: ObservableObject {
     
@@ -44,6 +45,9 @@ class BookingScheduleViewModel: ObservableObject {
             return
         }
         
+        let calendar = Calendar.current
+        let currentDateTimestamp = Timestamp(date: currentDate)
+        
         guard let currentUserUID = AuthManager.auth.currentUser?.uid else {
             LogService.log("User is not authenticated")
             return
@@ -51,6 +55,7 @@ class BookingScheduleViewModel: ObservableObject {
         
         AuthManager.db.collection("bookings")
             .whereField("userId", isEqualTo: currentUserUID)
+            .whereField("date", isEqualTo: currentDateTimestamp)
             .getDocuments { (querySnapshot, error) in
                 if let error = error {
                     LogService.log("Error querying bookings: \(error)")
@@ -92,7 +97,7 @@ class BookingScheduleViewModel: ObservableObject {
             }
     }
     
-    func scheduleNotification(startTimeSelection: String?) {
+    func scheduleNotification(startTimeSelection: String?, currentDate: Date) {
         let content = UNMutableNotificationContent()
         content.title = "Dogo"
         content.subtitle = "Your dog sitter is coming!"
@@ -102,17 +107,28 @@ class BookingScheduleViewModel: ObservableObject {
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         guard let startTimeSelection = startTimeSelection,
-              let currentDate = formatter.date(from: formatter.string(from: Date())) else {
+              var currentDate = formatter.date(from: formatter.string(from: currentDate)) else {
             LogService.log("Error: Invalid start time selection or current date")
             return
         }
-        
         guard let selectedTime = formatter.date(from: "2000-01-01 \(startTimeSelection)") else {
             LogService.log("Error: Unable to parse selected time")
             return
         }
         
         let calendar = Calendar.current
+        
+        if calendar.isDateInToday(currentDate) {
+            currentDate = formatter.date(from: formatter.string(from: currentDate))!
+        } else {
+            if let tomorrowDate = calendar.date(byAdding: .day, value: 1, to: currentDate) {
+                currentDate = tomorrowDate
+            } else {
+                LogService.log("Error: Unable to get date")
+                return
+            }
+        }
+        
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
         let timeComponents = calendar.dateComponents([.hour, .minute], from: selectedTime)
         
@@ -124,6 +140,8 @@ class BookingScheduleViewModel: ObservableObject {
         let notificationHour = selectedHour - 1
         var notificationMinute = selectedMinute + 45
         var notificationDay = dateComponents.day ?? 0
+        var notificationMonth = dateComponents.month ?? 0
+        var notificationYear = dateComponents.year ?? 0
         
         if notificationMinute < 0 {
             notificationDay -= 1

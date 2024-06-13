@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import FirebaseFirestoreInternal
 
 struct HomeView: View {
     
@@ -118,13 +119,18 @@ struct HomeView: View {
                             .shadow(radius: 5)
                             .overlay {
                                 HStack {
+                                    let booking = viewModel.recentBooking
                                     VStack {
                                         HStack (spacing: 8) {
-                                            Image("profile2")
+                                            WebImage(url: URL(string: viewModel.dogSitterImage))
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 32, height: 32)
-                                            textView(text: "Emily T", font: "Poppins-Regular", fontSize: 16, color: "blackColor")
+                                                .cornerRadius(50)
+                                                .frame(width: 40, height: 40)
+                                                .background(Color("yellowColor"))
+                                                .cornerRadius(50)
+                                            textView(text: booking?.sitter ?? "Emily T", font: "Poppins-Regular", fontSize: 16, color: "blackColor")
                                             Spacer()
                                         }
                                         
@@ -143,7 +149,7 @@ struct HomeView: View {
                                                 .aspectRatio(contentMode: .fill)
                                                 .frame(width: 16, height: 16)
                                                 .foregroundColor(Color("yellowColor"))
-                                            textView(text: "8:00 am - 9:00 am", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
+                                            textView(text: "\(booking?.startTime ?? "8:00") - \(booking?.endTime ?? "9:00")" , font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                             Spacer()
                                         }
                                     }
@@ -152,8 +158,10 @@ struct HomeView: View {
                                     Spacer()
                                     
                                     VStack {
-                                        textView(text: "May", font: "Poppins-Medium", fontSize: 16, color: "blackColor")
-                                        textView(text: "26", font: "Poppins-SemiBold", fontSize: 24, color: "blackColor")
+                                        let date = booking?.date ?? Timestamp(date: Date())
+                                        let components = extraDate(timestamp: date)
+                                        textView(text: components[1] , font: "Poppins-Medium", fontSize: 16, color: "blackColor")
+                                        textView(text: components[0] , font: "Poppins-SemiBold", fontSize: 24, color: "blackColor")
                                     }
                                     .padding(.trailing, 16)
                                 }
@@ -223,13 +231,22 @@ struct HomeView: View {
                             .padding(.top, 10)
                         }
                         .task { viewModel.fetchData() }
-                            .padding(.leading, 16)
+                        .padding(.leading, 16)
                     }
                 }
                 Spacer()
             }
             .padding(.top, 10)
         }
+    }
+    
+    func extraDate(timestamp: Timestamp) -> [String] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMMM"
+        
+        let date = formatter.string(from: timestamp.dateValue())
+        
+        return date.components(separatedBy: " ")
     }
 }
 

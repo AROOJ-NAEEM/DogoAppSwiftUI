@@ -6,13 +6,17 @@
 //
 
 import Foundation
+import FirebaseFirestoreInternal
 
 class HomeViewModel: ObservableObject {
     @Published var dogSitters : [DogSitterModel] = []
     @Published var isLoading: Bool = true
+    @Published var recentBooking: BookingModel?
+    @Published var dogSitterImage: String = ""
     
     init() {
         fetchData()
+        fetchDogSitterImage()
     }
     
     func fetchData() {
@@ -34,6 +38,61 @@ class HomeViewModel: ObservableObject {
                         LogService.log("Fetch: Unsuccessfull")
                         return nil
                     }
+                }
+            }
+    }
+    
+    func getRecentBooking() {
+        guard let currentUser = AuthManager.auth.currentUser else { return }
+        let userID = currentUser.uid
+        AuthManager.db.collection("bookings")
+            .whereField("userId", isEqualTo: userID)
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    return
+                }
+                
+                let sortedBookings = querySnapshot?.documents
+                    .compactMap { document -> BookingModel? in
+                        guard
+                            let date = document["date"] as? Timestamp,
+                            let startTime = document["startTime"] as? String,
+                            let endTime = document["endTime"] as? String,
+                            let sitter = document["sitter"] as? String,
+                            let userId = document["userId"] as? String
+                        else {
+                            return nil
+                        }
+                        
+                        return BookingModel(date: date, startTime: startTime, endTime: endTime, sitter: sitter, userId: userId)
+                    }
+                    .sorted { $0.startTime > $1.startTime }
+                
+                if let mostRecentBooking = sortedBookings?.first {
+                    self.recentBooking = mostRecentBooking
+                } else {
+                    self.recentBooking = nil
+                }
+            }
+    }
+    
+    func fetchDogSitterImage() {
+        AuthManager.db.collection("dogsitters")
+            .whereField("name", isEqualTo: self.recentBooking?.sitter ?? "Emily T")
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    LogService.log("Error fetching dog sitter image: \(error)")
+                    return
+                }
+                
+                if let document = querySnapshot?.documents.first {
+                    if let imageURL = document["profile"] as? String {
+                        self.dogSitterImage = imageURL
+                    } else {
+                        LogService.log("Image URL not found for \(self.recentBooking?.sitter ?? "Emily T")")
+                    }
+                } else {
+                    LogService.log("No dog sitter found with name: \(self.recentBooking?.sitter ?? "Emily T")")
                 }
             }
     }

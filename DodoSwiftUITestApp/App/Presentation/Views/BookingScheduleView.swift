@@ -15,7 +15,7 @@ struct BookingScheduleView: View {
     @State var endTimeSelection: String? = nil
     @State var sitterSelection: String? = nil
     @State var maxWidth: CGFloat = 171
-    @State var maxWidthForName: CGFloat = .infinity
+    @State var maxWidthForName: CGFloat = 358
     @State var clockIconName: String = "clock.circle"
     @State var personIconName: String = "person.circle"
     @State var timePlaceholder: String = "10:00"
@@ -24,6 +24,9 @@ struct BookingScheduleView: View {
     @State private var alertMessage = ""
     @State private var navigateToThankYouView = false
     @State private var progress: Int = 0
+    @State private var startTimeExpanded = false
+    @State private var endTimeExpanded = false
+    @State private var sitterExpanded = false
     
     @ObservedObject var viewModel = BookingScheduleViewModel()
     
@@ -33,6 +36,7 @@ struct BookingScheduleView: View {
         VStack(spacing: 24) {
             Spacer()
             NavigationHeader(viewName: BookingView(presentSideMenu: .constant(true)))
+            
             VStack(spacing: 16) {
                 HStack {
                     DateView(text: "Select the date")
@@ -50,104 +54,125 @@ struct BookingScheduleView: View {
                         .shadow(radius: 5)
                 }
             }
-            if progress >= 1 {
-                VStack(spacing: 0) {
-                    HStack {
-                        DateView(text: "Select the time")
-                        Spacer()
-                    }
-                    HStack(spacing: -20) {
-                        DropDownView(selection: $startTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
-                        
-                            .padding(.leading, -12)
-                        DropDownView(selection: $endTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
-                        
-                            .padding(.trailing, -12)
-                    }
-                }
-                .padding(.bottom, -30)
-            } else {
-                VStack(spacing: 0) {
-                    HStack {
-                        DateView(text: "Select the time")
-                        Spacer()
-                    }
-                    HStack(spacing: -20) {
-                        DropDownView(selection: $startTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
-                        
-                            .padding(.leading, -12)
-                        DropDownView(selection: $endTimeSelection, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, options: getTimeArray())
-                        
-                            .padding(.trailing, -12)
-                    }
-                }
-                .padding(.bottom, -30)
-                .hidden()
-            }
-            if progress >= 2 {
-                VStack(spacing: 0) {
-                    HStack {
-                        DateView(text: "Select the dog sitter")
-                        Spacer()
-                    }
-                    HStack {
-                        DropDownView(selection: $sitterSelection, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, options: viewModel.dogSittersName)
-                            .padding(.horizontal, -14)
-                    }
-                }
-                .padding(.bottom, -30)
-            } else {
-                VStack(spacing: 0) {
-                    HStack {
-                        DateView(text: "Select the dog sitter")
-                        Spacer()
-                    }
-                    HStack {
-                        DropDownView(selection: $sitterSelection, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, options: viewModel.dogSittersName)
-                            .padding(.horizontal, -14)
-                    }
-                }
-                .padding(.bottom, -30)
-                .hidden()
-            }
-            
             VStack {
-                NavigationLink(destination: ThankyouView()
-                    .navigationBarBackButtonHidden(true)
-                    .navigationBarHidden(true),
-                               isActive: $navigateToThankYouView) {
-                    EmptyView()
-                }
-                               .hidden()
-                
-                Button(action: {
-                    if progress < 2 {
-                        progress += 1
-                    }
-                    else {
-                        viewModel.saveBooking(startTimeSelection: startTimeSelection, endTimeSelection: endTimeSelection, sitterSelection: sitterSelection, currentDate: currentDate) { Bool, error in
-                            if let error = error {
-                                self.showAlert = true
-                                self.alertMessage = "\(error)"
+                ZStack(alignment: .bottom){
+                    VStack {
+                        ZStack {
+                            if progress >= 1 {
+                                VStack(spacing: 0) {
+                                    HStack {
+                                        DateView(text: "Select the time")
+                                        Spacer()
+                                    }
+                                    HStack(spacing: -20) {
+                                        DropDownView(selection: $startTimeSelection, isExpanded: $startTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: getTimeArray())
+                                            .padding(.leading, -12)
+                                        DropDownView(selection: $endTimeSelection, isExpanded: $endTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: getTimeArray())
+                                            .padding(.trailing, -12)
+                                    }
+                                }
+                                .padding(.bottom, -10)
                             } else {
-                                print(currentDate)
-                                viewModel.scheduleNotification(startTimeSelection: startTimeSelection)
-                                navigateToThankYouView = true
+                                VStack(spacing: 0) {
+                                    HStack {
+                                        DateView(text: "Select the time")
+                                        Spacer()
+                                    }
+                                    HStack(spacing: -20) {
+                                        VStack {
+                                            DropDownView(selection: $startTimeSelection, isExpanded: $startTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: getTimeArray())
+                                                .padding(.leading, -12)
+                                            Spacer()
+                                        }
+                                        VStack {
+                                            DropDownView(selection: $endTimeSelection, isExpanded: $endTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: getTimeArray())
+                                                .padding(.leading, -12)
+                                            Spacer()
+                                        }
+                                    }
+                                }
+                                .padding(.bottom, -10)
+                                .hidden()
                             }
                         }
+                        .zIndex(progress >= 1 ? 1 : 0)
+                        
+                        if progress >= 2 {
+                            VStack(spacing: 0) {
+                                HStack {
+                                    DateView(text: "Select the dog sitter")
+                                    Spacer()
+                                }
+                                HStack {
+                                    VStack {
+                                        DropDownView(selection: $sitterSelection, isExpanded: $sitterExpanded, iconName: $clockIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, time: .constant(false), options: viewModel.dogSittersName)
+                                            .padding(.horizontal, -14)
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .padding(.bottom, -30)
+                        } else {
+                            VStack(spacing: 0) {
+                                HStack {
+                                    DateView(text: "Select the dog sitter")
+                                    Spacer()
+                                }
+                                HStack {
+                                    VStack {
+                                        DropDownView(selection: $sitterSelection, isExpanded: $sitterExpanded, iconName: $clockIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, time: .constant(false), options: viewModel.dogSittersName)
+                                            .padding(.horizontal, -14)
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .padding(.bottom, -30)
+                            .hidden()
+                        }
                     }
-                }) {
-                    textView(text: "Next", font: "Poppins-Regular", fontSize: 24, color: "white")
-                        .frame(width: 350, height: 50)
-                        .background(Color("buttonColor"))
-                        .cornerRadius(8)
-                }
-                .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Unable to Book"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                    .padding(.bottom, 80)
+                    .zIndex(1)
+                    
+                    VStack {
+                        NavigationLink(destination: ThankyouView()
+                            .navigationBarBackButtonHidden(true)
+                            .navigationBarHidden(true),
+                                       isActive: $navigateToThankYouView) {
+                            EmptyView()
+                        }
+                                       .hidden()
+                        Spacer()
+                        Button(action: {
+                            if progress < 2 {
+                                progress += 1
+                            }
+                            else {
+                                viewModel.saveBooking(startTimeSelection: startTimeSelection, endTimeSelection: endTimeSelection, sitterSelection: sitterSelection, currentDate: currentDate) { Bool, error in
+                                    if let error = error {
+                                        self.showAlert = true
+                                        self.alertMessage = "\(error)"
+                                    } else {
+                                        print(currentDate)
+                                        viewModel.scheduleNotification(startTimeSelection: startTimeSelection, currentDate: currentDate)
+                                        navigateToThankYouView = true
+                                    }
+                                }
+                            }
+                        }) {
+                            textView(text: "Next", font: "Poppins-Regular", fontSize: 24, color: "white")
+                                .frame(width: 350, height: 50)
+                                .background(Color("buttonColor"))
+                                .cornerRadius(8)
+                        }
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text("Unable to Book"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                        }
+                    }
+                    .zIndex(-1)
                 }
             }
-                Spacer()
-            }
+            Spacer()
+        }
         .padding(.top, 10)
         .padding(.horizontal, 24)
         .background(Color("white"))
@@ -155,7 +180,6 @@ struct BookingScheduleView: View {
             viewModel.fetchData()
         }
     }
-    
     func getTimeArray() -> [String] {
         let lastTime: Double = 22
         var currentTime: Double = 5

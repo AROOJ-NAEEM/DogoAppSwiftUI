@@ -39,9 +39,6 @@ struct SideMenuMainView: View {
                     
                     DividerView(padding: 20)
                     LogoutView()
-                        .onTapGesture {
-                            try? AuthManager.auth.signOut()
-                        }
                 }
                 .padding(.top, 57)
                 .frame(width: 257)
@@ -117,8 +114,11 @@ struct SideMenuMainView: View {
     }
     
     func LogoutView() -> some View{
-        HStack {
-            NavigationLink(destination: SplashView(showHomeView: false).navigationBarBackButtonHidden(true)) {
+        Button(action: {
+            try? AuthManager.auth.signOut()
+            navigateToSplashView()
+        }) {
+            HStack {
                 Image("logout")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -126,9 +126,15 @@ struct SideMenuMainView: View {
                     .padding(.leading)
                 textView(text: "Log out", font: "Poppins-Regular", fontSize: 16, color: "blackColor")
             }
-            .navigationBarTitle("")
+            .padding(24)
         }
-        .padding(24)
+    }
+    
+    func navigateToSplashView() {
+        if let window = UIApplication.shared.windows.first {
+            window.rootViewController = UIHostingController(rootView: SplashView(showHomeView: false).navigationBarBackButtonHidden(true))
+            window.makeKeyAndVisible()
+        }
     }
     
     struct DogoLogoView: View {
