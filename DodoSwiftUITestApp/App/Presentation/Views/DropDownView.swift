@@ -78,11 +78,12 @@ struct DropDownView: View {
                         }
                         .background(Color.white)
                         .frame(height: 100)
-                        .padding(.horizontal, -4)
                     }
                     .frame(maxWidth: .infinity)
                     .background(Color.white)
-                    .position(x: maxWidth / 2, y: 0)
+                    .position(x: maxWidth / 2, y: maxWidth > 172 ? 5 : 0)
+                    .padding(.leading, maxWidth > 172 ? 10 : 5)
+                    .padding(.trailing, maxWidth > 172 ? -10 : -5)
                     .zIndex(0)
                 }
                 

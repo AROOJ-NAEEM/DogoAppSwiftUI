@@ -13,7 +13,7 @@ struct HomeView: View {
     
     @Binding var presentSideMenu: Bool
     @State private var search: String = ""
-    @ObservedObject var viewModel = HomeViewModel()
+    @StateObject var viewModel = HomeViewModel()
     
     var body: some View {
         ZStack {
@@ -186,6 +186,11 @@ struct HomeView: View {
                     if viewModel.isLoading {
                         ProgressView()
                             .frame(width: .infinity, height: 200)
+                            .task { 
+                                viewModel.fetchData()
+                                viewModel.fetchDogSitterImage()
+                                viewModel.getRecentBooking()
+                            }
                     } else {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 20) {
@@ -230,7 +235,6 @@ struct HomeView: View {
                             }
                             .padding(.top, 10)
                         }
-                        .task { viewModel.fetchData() }
                         .padding(.leading, 16)
                     }
                 }

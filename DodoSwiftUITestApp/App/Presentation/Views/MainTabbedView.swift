@@ -29,6 +29,8 @@ struct MainTabbedView: View {
                     SideMenuMainView(selectedSideMenuTab: $selectedSideMenuTab, presentSideMenu: $presentSideMenu)
                     Spacer()
                 }
+                .transition(.move(edge: .leading))
+                .animation(.easeInOut(duration: 0.4))
                 .background(Color.black.opacity(0.3))
                 .edgesIgnoringSafeArea(.all)
                 .onTapGesture {

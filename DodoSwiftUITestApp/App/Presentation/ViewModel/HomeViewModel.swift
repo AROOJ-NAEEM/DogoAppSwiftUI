@@ -14,16 +14,16 @@ class HomeViewModel: ObservableObject {
     @Published var recentBooking: BookingModel?
     @Published var dogSitterImage: String = ""
     
-    init() {
-        fetchData()
-        fetchDogSitterImage()
-    }
+    private var hasFetchedData: Bool = false
     
     func fetchData() {
+        guard !hasFetchedData else { return }
+        isLoading = true
         LogService.log("Fetch: Start")
         AuthManager.db
             .collection("dogsitters")
             .getDocuments { (snapshot, error) in
+                defer { self.isLoading = false }
                 guard let snapshot = snapshot, error == nil else {
                     return
                 }
@@ -39,6 +39,7 @@ class HomeViewModel: ObservableObject {
                         return nil
                     }
                 }
+                self.hasFetchedData = true
             }
     }
     

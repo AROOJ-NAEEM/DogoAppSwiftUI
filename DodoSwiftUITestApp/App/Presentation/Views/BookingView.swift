@@ -11,7 +11,7 @@ import FirebaseFirestoreInternal
 struct BookingView: View {
     @Binding var presentSideMenu: Bool
     
-    @ObservedObject var viewModel = BookingViewModel()
+    @StateObject var viewModel = BookingViewModel()
     
     var body: some View {
         ZStack {
@@ -23,10 +23,17 @@ struct BookingView: View {
                         endPoint: .bottom
                     )
                     .edgesIgnoringSafeArea(.all)
-                    bookingHeaderView(presentSideMenu: $presentSideMenu)
-                        .padding(.horizontal, 24)
-                        .padding(.top, 10)
-                        .environmentObject(viewModel)
+                    
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .scaleEffect(1.5, anchor: .center)
+                    } else {
+                        bookingHeaderView(presentSideMenu: $presentSideMenu)
+                            .padding(.horizontal, 24)
+                            .padding(.top, 10)
+                            .environmentObject(viewModel)
+                    }
                 }
                 .task {
                     viewModel.fetchBookingData()
@@ -57,29 +64,40 @@ struct bookingHeaderView: View {
         VStack(spacing: 0){
             NavigationHeader(viewName: MainTabbedView())
             
-            ScrollView (.vertical, showsIndicators: false) {
-                VStack {
-                    ForEach(viewModel.groupedBookings.keys.sorted(), id: \.self) { month in
-                        Section(header: Text(month)) {
-                            HStack {
-                                textView(text: month.components(separatedBy: " ").first ?? "Month", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
-                                Spacer()
-                            }
-                            ForEach(viewModel.groupedBookings[month]!, id: \.id) { booking in
-                                let date = booking.date.dateValue()
-                                let calendar = Calendar.current
-                                let dayOfMonth = calendar.component(.day, from: date)
-                                Bookings(sitter: booking.sitter, date: "\(dayOfMonth)", Month: month.components(separatedBy: " ").first ?? "Month", timeStart: booking.startTime, timeEnd: booking.endTime)
+            if viewModel.noOfBooking != 0 {
+                ScrollView (.vertical, showsIndicators: false) {
+                    VStack {
+                        ForEach(viewModel.groupedBookings.keys.sorted(), id: \.self) { month in
+                            Section {
+                                HStack {
+                                    textView(text: month.components(separatedBy: " ").first ?? "Month", font: "Poppins-SemiBold", fontSize: 16, color: "blackColor")
+                                    Spacer()
+                                }
+                                ForEach(viewModel.groupedBookings[month]!, id: \.id) { booking in
+                                    let date = booking.date.dateValue()
+                                    let calendar = Calendar.current
+                                    let dayOfMonth = calendar.component(.day, from: date)
+                                    Bookings(sitter: booking.sitter, date: "\(dayOfMonth)", Month: month.components(separatedBy: " ").first ?? "Month", timeStart: booking.startTime, timeEnd: booking.endTime)
+                                }
                             }
                         }
                     }
+                    .padding(.bottom, 77)
+                    Spacer()
                 }
-                .padding(.bottom, 77)
+                .overlay {
+                    BookingButton()
+                        .offset(y: 270)
+                }
+                .padding(.top, 40)
+            } else {
                 Spacer()
-            }
-            .overlay {
-                BookingButton()
-                    .offset(y: 270)
+                VStack(spacing: 20) {
+                    textView(text: "No Bookings Yet!", font: "Poppins-Bold", fontSize: 32, color: "blackColor")
+                    textView(text: "Click Below to Schedule your First Booking!↓", font: "Poppins-Medium", fontSize: 12, color: "blackColor")
+                    BookingNavigation(viewName: BookingScheduleView(), text: "Schedule Booking", width: 350, font: "Poppins-Regular", fontSize: 24, height: 50)
+                }
+                Spacer()
             }
         }
     }
@@ -189,7 +207,7 @@ struct Bookings: View {
                                 Image(systemName: "calendar")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: 10, height: 12)
+                                    .frame(width: 16, height: 16)
                                     .foregroundColor(Color("yellowColor"))
                                 textView(text: "\(timeStart) - \(timeEnd)", font: "Poppins-Regular", fontSize: 14, color: "blackColor")
                                 Spacer()

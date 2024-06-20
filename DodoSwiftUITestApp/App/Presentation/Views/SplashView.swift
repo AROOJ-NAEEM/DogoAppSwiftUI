@@ -244,7 +244,6 @@ struct LoginViewContent: View, ContentViewProtocol {
                                 print("Error adding document: \(error.localizedDescription)")
                             } else {
                                 self.showHomeView = showHomeView
-                                self.triggerNotifications()
                             }
                         }
                     } else {
@@ -309,7 +308,6 @@ struct LoginViewContent: View, ContentViewProtocol {
                             do {
                                 try await AuthManager.shared.googleOauth { result in
                                     showHomeView = result
-                                    self.triggerNotifications()
                                     self.isSigningIn = false
                                 }
                             } catch let e {
@@ -347,7 +345,6 @@ struct LoginViewContent: View, ContentViewProtocol {
                             LoginViewModel().appleLogin(authorization: authorization) { showHomeView in
                                 DispatchQueue.main.async {
                                     self.showHomeView = showHomeView
-                                    self.triggerNotifications()
                                     self.isSigningIn = false
                                 }
                             }
@@ -370,13 +367,4 @@ struct LoginViewContent: View, ContentViewProtocol {
             .navigationBarTitle("")
     }
     
-    func triggerNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success {
-                print("All set!")
-            } else if let error {
-                print(error.localizedDescription)
-            }
-        }
-    }
 }

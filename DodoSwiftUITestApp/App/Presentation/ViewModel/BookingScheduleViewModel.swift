@@ -52,7 +52,6 @@ class BookingScheduleViewModel: ObservableObject {
             LogService.log("User is not authenticated")
             return
         }
-        
         AuthManager.db.collection("bookings")
             .whereField("userId", isEqualTo: currentUserUID)
             .whereField("date", isEqualTo: currentDateTimestamp)
@@ -140,8 +139,8 @@ class BookingScheduleViewModel: ObservableObject {
         let notificationHour = selectedHour - 1
         var notificationMinute = selectedMinute + 45
         var notificationDay = dateComponents.day ?? 0
-        var notificationMonth = dateComponents.month ?? 0
-        var notificationYear = dateComponents.year ?? 0
+        let notificationMonth = dateComponents.month ?? 0
+        let notificationYear = dateComponents.year ?? 0
         
         if notificationMinute < 0 {
             notificationDay -= 1
@@ -156,7 +155,7 @@ class BookingScheduleViewModel: ObservableObject {
             return
         }
         
-        if triggerDate < currentDate {
+        if triggerDate < Date.now {
             LogService.log("Error: Trigger date is in the past")
             return
         }

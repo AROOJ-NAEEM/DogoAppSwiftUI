@@ -11,6 +11,8 @@ import FirebaseFirestoreInternal
 class BookingViewModel: ObservableObject {
     
     @Published var booking : [BookingModel] = []
+    @Published var noOfBooking: Int = 0
+    @Published var isLoading: Bool = true
     
     var groupedBookings: [String: [BookingModel]] {
         var groupedDict: [String: [BookingModel]] = [:]
@@ -47,6 +49,7 @@ class BookingViewModel: ObservableObject {
                     return
                 }
                 print("Number of documents: \(snapshot.documents.count )")
+                self.noOfBooking = snapshot.documents.count
                 LogService.log("Number of booking documents: \(snapshot.documents.count )")
                 self.booking = snapshot.documents.compactMap { documentSnapshot -> BookingModel? in
                     let documentData = documentSnapshot.data()
@@ -56,6 +59,7 @@ class BookingViewModel: ObservableObject {
                        let sitter = documentData["sitter"] as? String,
                        let userId = documentData["userId"] as? String
                     {
+                        self.isLoading = false
                         LogService.log("Booing fetch Successfull")
                         return BookingModel(date: date, startTime: startTime, endTime: endTime, sitter: sitter, userId: userId)
                     } else {
