@@ -130,7 +130,7 @@ struct BookingScheduleView: View {
                                 .hidden()
                             }
                         }
-                        .padding(.bottom, 80)
+                        .padding(.bottom, 110)
                         .zIndex(1)
                         
                         VStack {
@@ -164,8 +164,8 @@ struct BookingScheduleView: View {
                                     .frame(height: 50)
                                     .background(Color("buttonColor"))
                                     .cornerRadius(8)
-                                    .offset(y: -22)
                             }
+                            .offset(y: -42)
                             .alert(isPresented: $showAlert) {
                                 Alert(title: Text("Unable to Book"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                             }
