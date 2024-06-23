@@ -114,7 +114,7 @@ struct bookingHeaderView: View {
 struct BookingButton: View {
     var body: some View {
         BookingNavigation(viewName: BookingScheduleView(), text: "Booking", width: .infinity, font: "Poppins-Regular", fontSize: 24, height: 50)
-        .offset(y: 45)
+        .offset(y: 65)
     }
 }
 

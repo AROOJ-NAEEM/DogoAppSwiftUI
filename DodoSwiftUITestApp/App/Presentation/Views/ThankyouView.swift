@@ -22,7 +22,7 @@ struct ThankyouView: View {
             VStack {
                 BookingNavigation(viewName: MainTabbedView(), text: "Back to home", width: .infinity, font: "Poppins-Regular", fontSize: 24, height: 50)
             }
-            .padding(.bottom, 40)
+            .padding(.bottom, 16)
         }
         .padding(.horizontal, 24)
         .padding(.top, 10)
