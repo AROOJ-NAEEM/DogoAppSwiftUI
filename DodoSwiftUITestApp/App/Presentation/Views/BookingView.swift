@@ -95,7 +95,7 @@ struct bookingHeaderView: View {
                 VStack(spacing: 20) {
                     textView(text: "No Bookings Yet!", font: "Poppins-Bold", fontSize: 32, color: "blackColor")
                     textView(text: "Click Below to Schedule your First Booking!↓", font: "Poppins-Medium", fontSize: 12, color: "blackColor")
-                    BookingNavigation(viewName: BookingScheduleView(), text: "Schedule Booking", width: 350, font: "Poppins-Regular", fontSize: 24, height: 50)
+                    BookingNavigation(viewName: BookingScheduleView(), text: "Schedule Booking", width: .infinity, font: "Poppins-Regular", fontSize: 24, height: 50)
                 }
                 Spacer()
             }
@@ -113,7 +113,7 @@ struct bookingHeaderView: View {
 
 struct BookingButton: View {
     var body: some View {
-        BookingNavigation(viewName: BookingScheduleView(), text: "Booking", width: 350, font: "Poppins-Regular", fontSize: 24, height: 50)
+        BookingNavigation(viewName: BookingScheduleView(), text: "Booking", width: .infinity, font: "Poppins-Regular", fontSize: 24, height: 50)
         .offset(y: 45)
     }
 }
@@ -134,7 +134,8 @@ struct BookingNavigation<Content: View>: View {
             
         } label: {
             textView(text: text, font: font, fontSize: fontSize, color: "white")
-                .frame(width: width, height: height)
+                .frame(maxWidth: width)
+                .frame(height: height)
                 .background(Color("buttonColor"))
                 .cornerRadius(8)
         }

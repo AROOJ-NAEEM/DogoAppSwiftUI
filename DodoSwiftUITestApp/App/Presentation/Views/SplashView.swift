@@ -260,13 +260,15 @@ struct LoginViewContent: View, ContentViewProtocol {
                         .frame(width: 20, height: 20)
                 } else {
                     Text("Sign In")
+                        .frame(maxWidth: .infinity)
                 }
             }
             .font(Font.custom("Poppins-Medium", size: 20))
-            .frame(width: 358, height: 50)
+            .frame(height: 50)
             .background(Color("buttonColor"))
-            .foregroundColor(.white)
             .cornerRadius(8)
+            .padding(.horizontal)
+            .foregroundColor(.white)
             .disabled(isSigningIn)
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Error"), message: Text(alertMessage), dismissButton: .default(Text("OK")))

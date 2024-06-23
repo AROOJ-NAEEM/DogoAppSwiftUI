@@ -160,7 +160,8 @@ struct BookingScheduleView: View {
                                 }
                             }) {
                                 textView(text: "Next", font: "Poppins-Regular", fontSize: 24, color: "white")
-                                    .frame(width: 350, height: 50)
+                                    .frame(maxWidth: .infinity)
+                                    .frame(height: 50)
                                     .background(Color("buttonColor"))
                                     .cornerRadius(8)
                                     .offset(y: -22)
