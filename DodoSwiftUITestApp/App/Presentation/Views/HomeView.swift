@@ -233,6 +233,7 @@ struct HomeView: View {
                                     }
                                 }
                             }
+                            .padding(.trailing, 16)
                             .padding(.top, 10)
                         }
                         .padding(.leading, 16)
