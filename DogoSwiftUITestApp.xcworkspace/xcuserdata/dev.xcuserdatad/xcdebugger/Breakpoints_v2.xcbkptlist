@@ -448,8 +448,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "fetchBookingData()"
             landmarkType = "7">
             <Locations>
@@ -667,10 +667,10 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "BookingScheduleViewModel"
-            landmarkType = "3">
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "scheduleNotification(startTimeSelection:currentDate:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -683,8 +683,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "scheduleNotification(startTimeSelection:currentDate:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -874,8 +874,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "scheduleNotification(startTimeSelection:currentDate:)"
             landmarkType = "7">
             <Locations>
@@ -922,8 +922,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "scheduleNotification(startTimeSelection:currentDate:)"
             landmarkType = "7">
             <Locations>
@@ -995,38 +995,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1848E0A7-D04E-4CAD-AA3D-9B12387B2F2C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B3D0E90B-244D-4493-BFCF-8E37794B11F2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "48882A69-8B25-4749-A6AA-4E99EDC71133"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1034,8 +1002,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1050,6 +1018,178 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37D94435-973D-44E8-AEE3-818E6BA92B1B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "37D94435-973D-44E8-AEE3-818E6BA92B1B - cf1e2fdbb1c53675"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DogoSwiftUITestApp.BookingScheduleViewModel.saveBooking(startTimeSelection: Swift.Optional&lt;Swift.String&gt;, endTimeSelection: Swift.Optional&lt;Swift.String&gt;, sitterSelection: Swift.Optional&lt;Swift.String&gt;, currentDate: Foundation.Date, complete: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogoSwiftUITestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dev/Desktop/DodoSwiftUIApp/DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "1212">
+               </Location>
+               <Location
+                  uuid = "37D94435-973D-44E8-AEE3-818E6BA92B1B - a07cd08eefc49b72"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DogoSwiftUITestApp.BookingScheduleViewModel.saveBooking(startTimeSelection: Swift.Optional&lt;Swift.String&gt;, endTimeSelection: Swift.Optional&lt;Swift.String&gt;, sitterSelection: Swift.Optional&lt;Swift.String&gt;, currentDate: Foundation.Date, complete: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogoSwiftUITestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dev/Desktop/DodoSwiftUIApp/DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "1165">
+               </Location>
+               <Location
+                  uuid = "37D94435-973D-44E8-AEE3-818E6BA92B1B - e8a60475c14b1e66"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; Swift.Bool in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DogoSwiftUITestApp.BookingScheduleViewModel.saveBooking(startTimeSelection: Swift.Optional&lt;Swift.String&gt;, endTimeSelection: Swift.Optional&lt;Swift.String&gt;, sitterSelection: Swift.Optional&lt;Swift.String&gt;, currentDate: Foundation.Date, complete: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogoSwiftUITestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dev/Desktop/DodoSwiftUIApp/DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "121">
+               </Location>
+               <Location
+                  uuid = "37D94435-973D-44E8-AEE3-818E6BA92B1B - e8a60475c14b1e83"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; Swift.Bool in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DogoSwiftUITestApp.BookingScheduleViewModel.saveBooking(startTimeSelection: Swift.Optional&lt;Swift.String&gt;, endTimeSelection: Swift.Optional&lt;Swift.String&gt;, sitterSelection: Swift.Optional&lt;Swift.String&gt;, currentDate: Foundation.Date, complete: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogoSwiftUITestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dev/Desktop/DodoSwiftUIApp/DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "138">
+               </Location>
+               <Location
+                  uuid = "37D94435-973D-44E8-AEE3-818E6BA92B1B - a07cd08eefc49b97"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DogoSwiftUITestApp.BookingScheduleViewModel.saveBooking(startTimeSelection: Swift.Optional&lt;Swift.String&gt;, endTimeSelection: Swift.Optional&lt;Swift.String&gt;, sitterSelection: Swift.Optional&lt;Swift.String&gt;, currentDate: Foundation.Date, complete: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogoSwiftUITestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dev/Desktop/DodoSwiftUIApp/DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "1768">
+               </Location>
+               <Location
+                  uuid = "37D94435-973D-44E8-AEE3-818E6BA92B1B - e8a60475c14b1e83"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRQueryDocumentSnapshot) -&gt; Swift.Bool in closure #1 (Swift.Optional&lt;__C.FIRQuerySnapshot&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DogoSwiftUITestApp.BookingScheduleViewModel.saveBooking(startTimeSelection: Swift.Optional&lt;Swift.String&gt;, endTimeSelection: Swift.Optional&lt;Swift.String&gt;, sitterSelection: Swift.Optional&lt;Swift.String&gt;, currentDate: Foundation.Date, complete: (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "DogoSwiftUITestApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dev/Desktop/DodoSwiftUIApp/DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "121">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3C238E1-B465-465B-8D87-9EC178D49213"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E482F37D-4D16-4B2D-BD2C-D3900F3C8F58"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DodoSwiftUITestApp/App/Presentation/Views/BookingView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8A2248C0-B233-4C2B-A58D-29FFD32CA493"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DodoSwiftUITestApp/App/Presentation/Views/BookingView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1E2F8CF7-EE8E-42A0-8C64-3B4747B480FD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "65"
             endingLineNumber = "65"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
@@ -1059,23 +1199,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "37D94435-973D-44E8-AEE3-818E6BA92B1B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E3C238E1-B465-465B-8D87-9EC178D49213"
+            uuid = "62E2B464-2A56-4F9B-BBB6-629597D04167"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1091,15 +1215,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CF2AED8B-76D5-4B58-99A2-95B08B2A9A41"
-            shouldBeEnabled = "No"
+            uuid = "BF2340E9-F0FD-4269-9157-E5EB01D860E8"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
             landmarkType = "7">
          </BreakpointContent>

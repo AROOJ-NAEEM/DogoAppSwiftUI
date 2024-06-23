@@ -46,14 +46,25 @@ class BookingScheduleViewModel: ObservableObject {
         }
         
         let calendar = Calendar.current
-        let currentDateTimestamp = Timestamp(date: currentDate)
         
-        guard let currentUserUID = AuthManager.auth.currentUser?.uid else {
+        guard let currentUser = AuthManager.auth.currentUser else {
             LogService.log("User is not authenticated")
             return
         }
+        let userID = currentUser.uid
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        guard var currentDate = formatter.date(from: formatter.string(from: currentDate)) else {
+            LogService.log("Error: Invalid current date")
+            return
+        }
+        
+        let currentDateTimestamp = Timestamp(date: currentDate)
+        
         AuthManager.db.collection("bookings")
-            .whereField("userId", isEqualTo: currentUserUID)
+            .whereField("userId", isEqualTo: userID)
             .whereField("date", isEqualTo: currentDateTimestamp)
             .getDocuments { (querySnapshot, error) in
                 if let error = error {
@@ -61,6 +72,8 @@ class BookingScheduleViewModel: ObservableObject {
                     complete(false, error)
                     return
                 }
+                
+                LogService.log("Number of documents: \(querySnapshot?.documents.count ?? 0 )")
                 
                 if let documents = querySnapshot?.documents {
                     let overlappingBookings = documents.filter { document in
@@ -77,11 +90,11 @@ class BookingScheduleViewModel: ObservableObject {
                 }
                 
                 let bookingData: [String: Any] = [
-                    "date": currentDate,
+                    "date": currentDateTimestamp,
                     "startTime": startTime,
                     "endTime": endTime,
                     "sitter": sitter,
-                    "userId" : currentUserUID
+                    "userId" : userID
                 ]
                 
                 AuthManager.db.collection("bookings").addDocument(data: bookingData) { error in

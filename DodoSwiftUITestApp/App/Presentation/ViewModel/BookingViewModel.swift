@@ -39,10 +39,16 @@ class BookingViewModel: ObservableObject {
             return
         }
         LogService.log("Fetch booking start")
+        isLoading = true
         AuthManager.db
             .collection("bookings")
             .whereField("userId", isEqualTo: currentUserUID)
-            .getDocuments { (snapshot, error) in
+            .getDocuments { [weak self] (snapshot, error) in
+                guard let self = self else { return }
+                
+                defer {
+                    self.isLoading = false
+                }
                 guard let snapshot = snapshot, error == nil else {
                     //handle error
                     LogService.log("Error getting booking document")

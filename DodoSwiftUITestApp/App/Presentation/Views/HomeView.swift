@@ -200,7 +200,7 @@ struct HomeView: View {
                                             WebImage(url: URL(string: dogSitter.profile))
                                                 .resizable()
                                                 .indicator(.activity)
-                                                .frame(width: 120, height: 120)
+                                                .frame(width: 130, height: 120)
                                                 .cornerRadius(8)
                                             ZStack {
                                                 textView(text: "  $\(dogSitter.charges)/hour  ", font: "Poppins-Medium", fontSize: 12, color: "white")
