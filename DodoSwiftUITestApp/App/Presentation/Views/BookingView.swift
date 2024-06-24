@@ -180,7 +180,8 @@ struct Bookings: View {
         HStack {
             Rectangle()
                 .fill(.clear)
-                .frame(width: .infinity, height: 102)
+                .frame(height: 102)
+                .frame(maxWidth: .infinity)
                 .cornerRadius(8)
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)

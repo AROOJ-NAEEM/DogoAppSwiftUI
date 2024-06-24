@@ -41,11 +41,15 @@ struct DropDownView: View {
                                 .rotationEffect(.degrees(isExpanded ? 180 : 0))
                                 .animation(.easeInOut(duration: 0.2))
                         }
-                        .frame(maxWidth: maxWidth, maxHeight: 40)
+                        .frame(maxWidth: maxWidth)
+                        .frame(height: 40)
                         .padding(.horizontal, 15)
                         .padding(.vertical, 5)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(8)
+                        .background(Color("white"))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("textfieldColor1"), lineWidth: 1)
+                        )
                     }
                 }
                 .zIndex(1)
@@ -66,13 +70,17 @@ struct DropDownView: View {
                                             .frame(width: geometry.size.width, alignment: .leading)
                                             .foregroundColor(Color("textfieldColor1"))
                                     }
-                                    .background(Color.gray.opacity(0.2))
+                                    .background(Color("white"))
+                                    
+                                    Divider()
+                                        .frame(height: 1)
+                                        .overlay(Color("menuShadowColor"))
                                 }
                             }
                             .cornerRadius(8)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("textfieldColor1"), lineWidth: 1)
                             )
                             .padding(.vertical, 4)
                         }

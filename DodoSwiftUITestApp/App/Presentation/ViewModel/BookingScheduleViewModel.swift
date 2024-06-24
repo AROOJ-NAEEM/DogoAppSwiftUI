@@ -45,6 +45,12 @@ class BookingScheduleViewModel: ObservableObject {
             return
         }
         
+        guard startTime != endTime else {
+            LogService.log("Start Time and End Time Can't be the same!")
+            complete(false, "Start Time and End Time Can't be the same")
+            return
+        }
+        
         let calendar = Calendar.current
         
         guard let currentUser = AuthManager.auth.currentUser else {
@@ -103,10 +109,21 @@ class BookingScheduleViewModel: ObservableObject {
                         complete(false, error)
                     } else {
                         LogService.log("Booking added successfully")
+                        self.askForPermission()
                         complete(true, nil)
                     }
                 }
             }
+    }
+    
+    func askForPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if granted {
+                LogService.log("Notification permission granted.")
+            } else if let error = error {
+                LogService.log("Error requesting notification permission: \(error.localizedDescription)")
+            }
+        }
     }
     
     func scheduleNotification(startTimeSelection: String?, currentDate: Date) {

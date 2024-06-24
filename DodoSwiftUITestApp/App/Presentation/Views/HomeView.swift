@@ -73,7 +73,8 @@ struct HomeView: View {
                 HStack {
                     Rectangle()
                         .fill(Color("dogoImageColor"))
-                        .frame(width: .infinity, height: 130)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 130)
                         .cornerRadius(8)
                         .overlay {
                             HStack(spacing: -6) {
@@ -110,7 +111,8 @@ struct HomeView: View {
                     HStack {
                         Rectangle()
                             .fill(.clear)
-                            .frame(width: .infinity, height: 116)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 116)
                             .cornerRadius(8)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
@@ -185,7 +187,8 @@ struct HomeView: View {
                     
                     if viewModel.isLoading {
                         ProgressView()
-                            .frame(width: .infinity, height: 200)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 200)
                             .task { 
                                 viewModel.fetchData()
                                 viewModel.fetchDogSitterImage()
@@ -200,13 +203,14 @@ struct HomeView: View {
                                             WebImage(url: URL(string: dogSitter.profile))
                                                 .resizable()
                                                 .indicator(.activity)
-                                                .frame(width: 130, height: 120)
+                                                .frame(width: 130, height: 130)
                                                 .cornerRadius(8)
                                             ZStack {
                                                 textView(text: "  $\(dogSitter.charges)/hour  ", font: "Poppins-Medium", fontSize: 12, color: "white")
+                                                    .frame(width: 70, height: 26)
                                                     .background(Color("buttonColor"))
                                                     .cornerRadius(50)
-                                                    .offset(x: 30, y: -60)
+                                                    .offset(x: 35, y: -60)
                                             }
                                         }
                                         textView(text: dogSitter.name, font: "Poppins-Medium", fontSize: 16, color: "blackColor")
@@ -235,8 +239,8 @@ struct HomeView: View {
                             }
                             .padding(.trailing, 16)
                             .padding(.top, 10)
+                            .padding(.leading, 16)
                         }
-                        .padding(.leading, 16)
                     }
                 }
                 Spacer()

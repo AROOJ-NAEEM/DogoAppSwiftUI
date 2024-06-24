@@ -30,8 +30,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/Views/BookingScheduleView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -541,8 +541,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "scheduleNotification(startTimeSelection:currentDate:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -557,8 +557,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "scheduleNotification(startTimeSelection:currentDate:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -573,8 +573,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/Views/BookingScheduleView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "getTimeArray()"
             landmarkType = "7">
             <Locations>
@@ -621,8 +621,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/Views/BookingScheduleView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "getTimeArray()"
             landmarkType = "7">
             <Locations>
@@ -684,8 +684,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/Views/HomeView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -748,8 +748,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "scheduleNotification(startTimeSelection:currentDate:)"
             landmarkType = "7">
             <Locations>
@@ -796,8 +796,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "scheduleNotification(startTimeSelection:currentDate:)"
             landmarkType = "7">
             <Locations>
@@ -844,8 +844,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/Views/DropDownView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -876,8 +876,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -892,8 +892,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -908,8 +908,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
             landmarkType = "7">
             <Locations>
@@ -1016,8 +1016,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1064,8 +1064,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1080,8 +1080,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1096,8 +1096,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/ViewModel/BookingScheduleViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "saveBooking(startTimeSelection:endTimeSelection:sitterSelection:currentDate:complete:)"
             landmarkType = "7">
          </BreakpointContent>

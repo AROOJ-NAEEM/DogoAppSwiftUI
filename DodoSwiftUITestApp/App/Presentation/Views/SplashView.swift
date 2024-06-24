@@ -257,7 +257,7 @@ struct LoginViewContent: View, ContentViewProtocol {
             }) {
                 if isSigningIn {
                     ProgressView()
-                        .frame(width: 20, height: 20)
+                        .frame(maxWidth: .infinity)
                 } else {
                     Text("Sign In")
                         .frame(maxWidth: .infinity)
