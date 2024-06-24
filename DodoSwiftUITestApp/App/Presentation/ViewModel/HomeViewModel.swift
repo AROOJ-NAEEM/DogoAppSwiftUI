@@ -98,4 +98,13 @@ class HomeViewModel: ObservableObject {
             }
     }
     
+    func extraDate(timestamp: Timestamp) -> [String] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMMM"
+        
+        let date = formatter.string(from: timestamp.dateValue())
+        
+        return date.components(separatedBy: " ")
+    }
+    
 }

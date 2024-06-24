@@ -80,6 +80,11 @@
 		D7BA8F2B2BFF962000724F3B /* DodoSwiftUITestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BA8F2A2BFF962000724F3B /* DodoSwiftUITestAppApp.swift */; };
 		D7BA8F2F2BFF962300724F3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BA8F2E2BFF962300724F3B /* Assets.xcassets */; };
 		D7BA8F322BFF962300724F3B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7BA8F312BFF962300724F3B /* Preview Assets.xcassets */; };
+		D7F0854C2C31567D00777C3A /* CurveShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F0854B2C31567D00777C3A /* CurveShape.swift */; };
+		D7F0854F2C3157F600777C3A /* View+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F0854E2C3157F600777C3A /* View+Additions.swift */; };
+		D7F085512C315F5000777C3A /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F085502C315F5000777C3A /* CalendarViewModel.swift */; };
+		D7F085552C3164AB00777C3A /* Date+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F085542C3164AB00777C3A /* Date+Addition.swift */; };
+		D7F085572C31654900777C3A /* CustomDatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F085562C31654900777C3A /* CustomDatePickerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +192,11 @@
 		D7BA8F2A2BFF962000724F3B /* DodoSwiftUITestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DodoSwiftUITestAppApp.swift; sourceTree = "<group>"; };
 		D7BA8F2E2BFF962300724F3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7BA8F312BFF962300724F3B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D7F0854B2C31567D00777C3A /* CurveShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveShape.swift; sourceTree = "<group>"; };
+		D7F0854E2C3157F600777C3A /* View+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Additions.swift"; sourceTree = "<group>"; };
+		D7F085502C315F5000777C3A /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		D7F085542C3164AB00777C3A /* Date+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Addition.swift"; sourceTree = "<group>"; };
+		D7F085562C31654900777C3A /* CustomDatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +323,7 @@
 		D70563FE2C0609E200955B77 /* Infastructure */ = {
 			isa = PBXGroup;
 			children = (
+				D7F0854A2C31565900777C3A /* Utilities */,
 				D71A49D12C0DFFDF0003AAA8 /* Services */,
 			);
 			path = Infastructure;
@@ -394,6 +405,8 @@
 				D71CA4662C109ACA00353C00 /* BookingScheduleViewModel.swift */,
 				D71CA46C2C14825100353C00 /* BookingViewModel.swift */,
 				D71CA46E2C14D22900353C00 /* AuthenticationViewModel.swift */,
+				D7F085502C315F5000777C3A /* CalendarViewModel.swift */,
+				D7F085562C31654900777C3A /* CustomDatePickerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -445,6 +458,24 @@
 				D7BA8F312BFF962300724F3B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D7F0854A2C31565900777C3A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D7F0854D2C3157C700777C3A /* Extensions */,
+				D7F0854B2C31567D00777C3A /* CurveShape.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D7F0854D2C3157C700777C3A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D7F0854E2C3157F600777C3A /* View+Additions.swift */,
+				D7F085542C3164AB00777C3A /* Date+Addition.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -647,9 +678,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D70563E32C04E1BE00955B77 /* SideMenuRowType.swift in Sources */,
+				D7F0854C2C31567D00777C3A /* CurveShape.swift in Sources */,
 				D71CA4692C10AF3800353C00 /* BookingModel.swift in Sources */,
 				D71A49CE2C0A25780003AAA8 /* ThankyouView.swift in Sources */,
 				D70564052C08A29700955B77 /* BookingScheduleView.swift in Sources */,
+				D7F0854F2C3157F600777C3A /* View+Additions.swift in Sources */,
 				D71CA4652C0F97D200353C00 /* HomeViewModel.swift in Sources */,
 				D7A62A112C0998E8005D200B /* CustomDatePicker.swift in Sources */,
 				D70563F62C05DA9800955B77 /* SideMenuMainView.swift in Sources */,
@@ -660,13 +693,16 @@
 				D70563DF2C04B2C700955B77 /* HomeView.swift in Sources */,
 				D71A49D02C0DFEED0003AAA8 /* AppDelegate.swift in Sources */,
 				D71CA4712C16083D00353C00 /* LogService.swift in Sources */,
+				D7F085512C315F5000777C3A /* CalendarViewModel.swift in Sources */,
 				D7A62A172C09F7D7005D200B /* DropDownPickerState.swift in Sources */,
 				D71CA4672C109ACA00353C00 /* BookingScheduleViewModel.swift in Sources */,
 				D7BA8F2B2BFF962000724F3B /* DodoSwiftUITestAppApp.swift in Sources */,
 				D71CA4632C0F975300353C00 /* DogSitterModel.swift in Sources */,
+				D7F085572C31654900777C3A /* CustomDatePickerViewModel.swift in Sources */,
 				D7A62A132C099F04005D200B /* DateValue.swift in Sources */,
 				D70563952C00B91100955B77 /* SplashView.swift in Sources */,
 				D70563F82C05DADB00955B77 /* MainTabbedView.swift in Sources */,
+				D7F085552C3164AB00777C3A /* Date+Addition.swift in Sources */,
 				D71CA46D2C14825100353C00 /* BookingViewModel.swift in Sources */,
 				D71CA46B2C11FD8E00353C00 /* DropDownView.swift in Sources */,
 			);
@@ -845,7 +881,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DogoSwiftUITestApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"DodoSwiftUITestApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 7JG67HW227;
 				ENABLE_PREVIEWS = YES;
@@ -885,7 +921,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DogoSwiftUITestApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"DodoSwiftUITestApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 7JG67HW227;
 				ENABLE_PREVIEWS = YES;

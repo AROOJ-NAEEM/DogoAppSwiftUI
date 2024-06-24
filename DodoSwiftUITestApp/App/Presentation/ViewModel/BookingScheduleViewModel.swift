@@ -45,6 +45,12 @@ class BookingScheduleViewModel: ObservableObject {
             return
         }
         
+        guard startTime != endTime else {
+            LogService.log("Start Time and End Time Can't be the same!")
+            complete(false, "Start Time and End Time Can't be the same")
+            return
+        }
+        
         let calendar = Calendar.current
         
         guard let currentUser = AuthManager.auth.currentUser else {
@@ -103,10 +109,21 @@ class BookingScheduleViewModel: ObservableObject {
                         complete(false, error)
                     } else {
                         LogService.log("Booking added successfully")
+                        self.askForPermission()
                         complete(true, nil)
                     }
                 }
             }
+    }
+    
+    func askForPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if granted {
+                LogService.log("Notification permission granted.")
+            } else if let error = error {
+                LogService.log("Error requesting notification permission: \(error.localizedDescription)")
+            }
+        }
     }
     
     func scheduleNotification(startTimeSelection: String?, currentDate: Date) {
@@ -187,6 +204,24 @@ class BookingScheduleViewModel: ObservableObject {
                 LogService.log("Notification scheduled successfully")
             }
         }
+    }
+    
+    func getTimeArray() -> [String] {
+        let lastTime: Double = 23
+        var currentTime: Double = 0
+        let incrementMinutes: Double = 60
+        var timeArray: [String] = []
+        while currentTime <= lastTime {
+            currentTime += (incrementMinutes/60)
+            let hours = Int(floor(currentTime))
+            let minutes = Int(currentTime.truncatingRemainder(dividingBy: 1)*60)
+            if minutes == 0 {
+                timeArray.append("\(hours):00")
+            } else {
+                timeArray.append("\(hours):\(minutes)")
+            }
+        }
+        return timeArray
     }
     
 }

@@ -18,8 +18,9 @@ struct BookingScheduleView: View {
     @State var maxWidthForName: CGFloat = 358
     @State var clockIconName: String = "clock.circle"
     @State var personIconName: String = "person.circle"
-    @State var timePlaceholder: String = "10:00"
-    @State var sitterPlaceholder: String = "Joana G"
+    @State var startTimePlaceholder: String = "Select Start Time"
+    @State var endTimePlaceholder: String = "Select End Time"
+    @State var sitterPlaceholder: String = "Select your preffered Dog Sitter"
     @State private var showAlert = false
     @State private var alertMessage = ""
     @State private var navigateToThankYouView = false
@@ -65,9 +66,9 @@ struct BookingScheduleView: View {
                                             Spacer()
                                         }
                                         HStack(spacing: -20) {
-                                            DropDownView(selection: $startTimeSelection, isExpanded: $startTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: getTimeArray())
+                                            DropDownView(selection: $startTimeSelection, isExpanded: $startTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $startTimePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: viewModel.getTimeArray())
                                                 .padding(.leading, -12)
-                                            DropDownView(selection: $endTimeSelection, isExpanded: $endTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: getTimeArray())
+                                            DropDownView(selection: $endTimeSelection, isExpanded: $endTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $endTimePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: viewModel.getTimeArray())
                                                 .padding(.trailing, -12)
                                         }
                                     }
@@ -80,12 +81,12 @@ struct BookingScheduleView: View {
                                         }
                                         HStack(spacing: -20) {
                                             VStack {
-                                                DropDownView(selection: $startTimeSelection, isExpanded: $startTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: getTimeArray())
+                                                DropDownView(selection: $startTimeSelection, isExpanded: $startTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $startTimePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: viewModel.getTimeArray())
                                                     .padding(.leading, -12)
                                                 Spacer()
                                             }
                                             VStack {
-                                                DropDownView(selection: $endTimeSelection, isExpanded: $endTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $timePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: getTimeArray())
+                                                DropDownView(selection: $endTimeSelection, isExpanded: $endTimeExpanded, iconName: $clockIconName, dropDownPlaceholder: $endTimePlaceholder, maxWidth: $maxWidth, time: .constant(true), options: viewModel.getTimeArray())
                                                     .padding(.leading, -12)
                                                 Spacer()
                                             }
@@ -105,7 +106,7 @@ struct BookingScheduleView: View {
                                     }
                                     HStack {
                                         VStack {
-                                            DropDownView(selection: $sitterSelection, isExpanded: $sitterExpanded, iconName: $clockIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, time: .constant(false), options: viewModel.dogSittersName)
+                                            DropDownView(selection: $sitterSelection, isExpanded: $sitterExpanded, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, time: .constant(false), options: viewModel.dogSittersName)
                                                 .padding(.horizontal, -14)
                                             Spacer()
                                         }
@@ -120,7 +121,7 @@ struct BookingScheduleView: View {
                                     }
                                     HStack {
                                         VStack {
-                                            DropDownView(selection: $sitterSelection, isExpanded: $sitterExpanded, iconName: $clockIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, time: .constant(false), options: viewModel.dogSittersName)
+                                            DropDownView(selection: $sitterSelection, isExpanded: $sitterExpanded, iconName: $personIconName, dropDownPlaceholder: $sitterPlaceholder, maxWidth: $maxWidthForName, time: .constant(false), options: viewModel.dogSittersName)
                                                 .padding(.horizontal, -14)
                                             Spacer()
                                         }
@@ -183,24 +184,6 @@ struct BookingScheduleView: View {
             }
         }
     }
-    func getTimeArray() -> [String] {
-        let lastTime: Double = 23
-        var currentTime: Double = 0
-        let incrementMinutes: Double = 60
-        var timeArray: [String] = []
-        while currentTime <= lastTime {
-            currentTime += (incrementMinutes/60)
-            let hours = Int(floor(currentTime))
-            let minutes = Int(currentTime.truncatingRemainder(dividingBy: 1)*60)
-            if minutes == 0 {
-                timeArray.append("\(hours):00")
-            } else {
-                timeArray.append("\(hours):\(minutes)")
-            }
-        }
-        return timeArray
-    }
-    
 }
 
 struct DateView: View {
@@ -215,6 +198,7 @@ struct DateView: View {
 struct CalendarView: View {
     @Binding var currentMonth: Int
     @Binding var currentDate: Date
+    @ObservedObject var viewModel: CalendarViewModel = CalendarViewModel()
     
     var body: some View {
         VStack(spacing: 16) {
@@ -226,7 +210,7 @@ struct CalendarView: View {
                         .foregroundColor(Color("blackColor"))
                 })
                 Spacer()
-                textView(text: extraDate()[0] , font: "Poppins-Medium", fontSize: 18, color: "blackColor")
+                textView(text: viewModel.formattedDate(currentDate: currentDate)[0] , font: "Poppins-Medium", fontSize: 18, color: "blackColor")
                 Spacer()
                 Button(action: {
                     currentMonth += 1
@@ -236,15 +220,6 @@ struct CalendarView: View {
                 })
             }
         }
-    }
-    //extracting year and months for display
-    func extraDate() -> [String] {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM YYYY"
-        
-        let date = formatter.string(from: currentDate)
-        
-        return date.components(separatedBy: " ")
     }
 }
 

@@ -32,6 +32,7 @@ class BookingViewModel: ObservableObject {
         
         return groupedDict
     }
+    
     func fetchBookingData() {
         guard let currentUserUID = AuthManager.auth.currentUser?.uid else {
             LogService.log("User is not authenticated")

@@ -15,13 +15,6 @@ import GoogleSignIn
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if granted {
-                LogService.log("Notification permission granted.")
-            } else if let error = error {
-                LogService.log("Error requesting notification permission: \(error.localizedDescription)")
-            }
-        }
         return true
     }
     

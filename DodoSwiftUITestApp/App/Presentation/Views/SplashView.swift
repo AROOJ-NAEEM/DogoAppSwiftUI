@@ -52,20 +52,6 @@ struct SplashView: View {
     SplashView(showHomeView: false)
 }
 
-struct CurveShape: Shape {
-    
-    func path(in rect: CGRect) -> Path {
-        Path { path in
-            path.move(to: CGPoint(x: rect.minX, y: rect.midY))
-            path.addQuadCurve(
-                to: CGPoint(x: rect.maxX, y: rect.midY),
-                control: CGPoint(x: rect.width * 0.5, y: rect.height * 0.25))
-            path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-            path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        }
-    }
-}
-
 struct DogoTextView: View {
     var text: String
     var body: some View {
@@ -257,7 +243,7 @@ struct LoginViewContent: View, ContentViewProtocol {
             }) {
                 if isSigningIn {
                     ProgressView()
-                        .frame(width: 20, height: 20)
+                        .frame(maxWidth: .infinity)
                 } else {
                     Text("Sign In")
                         .frame(maxWidth: .infinity)
@@ -306,7 +292,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                     Button(action: {
                         // action
                         self.isSigningIn = true
-                        Task {
+                        Task.detached { @MainActor in
                             do {
                                 try await AuthManager.shared.googleOauth { result in
                                     showHomeView = result
@@ -314,6 +300,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                                 }
                             } catch let e {
                                 print(e)
+                                self.isSigningIn = false
                                 let err = e.localizedDescription
                             }
                         }
@@ -352,6 +339,7 @@ struct LoginViewContent: View, ContentViewProtocol {
                             }
                         case .failure(let error):
                             print("Could not authenticate: \(error.localizedDescription)")
+                            self.isSigningIn = false
                         }
                     }
                     .disabled(isSigningIn)

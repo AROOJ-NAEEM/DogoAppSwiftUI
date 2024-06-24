@@ -11,27 +11,28 @@ struct CustomDatePicker: View {
     
     @Binding var currentDate: Date
     @Binding var currentMonth: Int
+    @ObservedObject var viewModel = CustomDatePickerViewModel()
     
     var body: some View {
         
-        //days
         let days : [String] = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
-        
-        VStack(spacing: 16) {
-            //dates
-            //LazyGrid
-            let columns = Array(repeating: GridItem(.flexible()), count: 7)
+        let columns = Array(repeating: GridItem(.flexible()), count: 7)
+        VStack {
             LazyVGrid(columns: columns, spacing: 15, content: {
                 ForEach(days, id: \.self) { day in
                     textView(text: day, font: "Poppins-Medium", fontSize: 12, color: "blackColor")
                 }
+            })
+        }
+        VStack(spacing: 16) {
+            LazyVGrid(columns: columns, spacing: 15, content: {
                 ForEach(extractDate()) { value in
                     cardView(value: value)
                         .background(
                             Circle()
                                 .fill(value.day != -1 ? Color("yellowColor") : .white)
                                 .frame(width: 42, height: 42)
-                                .opacity(isSameDate(date1: value.date, date2: currentDate) ? 1: 0)
+                                .opacity(viewModel.isSameDate(date1: value.date, date2: currentDate) ? 1: 0)
                         )
                         .onTapGesture {
                             currentDate = value.date
@@ -39,7 +40,8 @@ struct CustomDatePicker: View {
                 }
             })
         }
-        .onChange(of: currentMonth) { newValue in
+        .frame(height: viewModel.calculateViewHeight())
+        .onChange(of: currentMonth) { _ in
             currentDate = getCurrentMonth()
         }
         
@@ -56,22 +58,6 @@ struct CustomDatePicker: View {
         .frame(height: 40, alignment: .top)
     }
     
-    func isSameDate(date1: Date, date2: Date)-> Bool {
-        let calendar = Calendar.current
-        
-        return calendar.isDate(date1, inSameDayAs: date2)
-    }
-    
-    //extracting year and months for display
-    func extraDate() -> [String] {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM YYYY"
-        
-        let date = formatter.string(from: currentDate)
-        
-        return date.components(separatedBy: " ")
-    }
-    
     func getCurrentMonth() -> Date {
         let calendar = Calendar.current
         guard let currentMonth = calendar.date(byAdding: .month, value: self.currentMonth, to: Date()) else { return Date() }
@@ -80,7 +66,6 @@ struct CustomDatePicker: View {
     }
     
     func extractDate() -> [DateValue] {
-        //getting current month date
         let calendar = Calendar.current
         let currentMonth = getCurrentMonth
         
@@ -90,10 +75,12 @@ struct CustomDatePicker: View {
             return DateValue(day: day, date: date)
         }
         
-        //adding offset daysto get exact week days
         let firstWeekday = calendar.component(.weekday, from: days.first?.date ?? Date())
-        
-        for _ in 0..<firstWeekday - 2 {
+        var offset = firstWeekday - 2
+        if offset < 0 {
+            offset += 7
+        }
+        for _ in 0..<offset {
             days.insert(DateValue(day: -1, date: Date()), at: 0)
         }
         return days
@@ -102,17 +89,4 @@ struct CustomDatePicker: View {
 
 #Preview {
     CustomDatePicker(currentDate: .constant(Date()), currentMonth: .constant(0))
-}
-
-//Extending date to get current month date
-extension Date {
-    func getAllDate() -> [Date] {
-        let calendar = Calendar.current
-        //getting start date
-        let startDate = calendar.date(from: Calendar.current.dateComponents([.year, .month], from: self))
-        let range = calendar.range(of: .day, in: .month, for: startDate ?? self)
-        return range?.compactMap{ day -> Date in
-            return calendar.date(byAdding: .day, value: day - 1, to: startDate ?? self) ?? Date.now
-        } ?? []
-    }
 }

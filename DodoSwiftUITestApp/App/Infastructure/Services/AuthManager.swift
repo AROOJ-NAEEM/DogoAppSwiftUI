@@ -33,6 +33,7 @@ class AuthManager {
         }
     }
     
+    @MainActor
     func googleOauth(completion: @escaping (Bool) -> Void ) async throws {
         // google sign in
         guard let clientID = FirebaseApp.app()?.options.clientID else {
@@ -44,8 +45,8 @@ class AuthManager {
         GIDSignIn.sharedInstance.configuration = config
         
         //get rootView
-        let scene = await UIApplication.shared.connectedScenes.first as? UIWindowScene
-        guard let rootViewController = await scene?.windows.first?.rootViewController
+        let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        guard let rootViewController = scene?.windows.first?.rootViewController
         else {
             fatalError("There is no root view controller!")
         }
