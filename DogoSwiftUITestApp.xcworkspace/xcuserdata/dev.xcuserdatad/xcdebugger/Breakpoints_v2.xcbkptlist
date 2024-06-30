@@ -30,8 +30,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/Views/BookingScheduleView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -1094,8 +1094,8 @@
             filePath = "DodoSwiftUITestApp/App/Presentation/Views/BookingScheduleView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -1112,7 +1112,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "59"
             endingLineNumber = "59"
-            landmarkName = "cardView(value:)"
+            landmarkName = "isSameDate(date1:date2:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
