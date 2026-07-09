@@ -8,9 +8,9 @@ Dogo is an iOS app built with **SwiftUI** that connects pet owners with trusted 
 
 ## 📱 Screenshots
 
-| Splash | Login | Google Sign In | Home |
-|--------|---------|------|---------|
-| ![Splash](project%20screenshots/splash.png) | ![Login](project%20screenshots/login.png) | ![Google Sign In](project%20screenshots/google%20sign%20in.png) | ![Home](project%20screenshots/home.png) |
+| Splash | Login | Home |
+|--------|---------|---------|
+| ![Splash](project%20screenshots/splash.png) | ![Login](project%20screenshots/login.png) | ![Home](project%20screenshots/home.png) |
 
 | Side Menu | Booking List | Booking Details | 
 |--------|---------|------|
