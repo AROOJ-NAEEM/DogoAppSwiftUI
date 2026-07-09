@@ -160,7 +160,7 @@ pod 'FirebaseMessaging'
 ### Installation
 ```bash
 # 1. Clone the repository
-git clone <repo-url>
+git clone [<repo-url>](https://github.com/AROOJ-NAEEM/DogoAppSwiftUI.git)
 cd DogoAppSwiftUI-main
 
 # 2. Install CocoaPods dependencies
